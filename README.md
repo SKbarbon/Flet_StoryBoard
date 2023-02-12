@@ -8,4 +8,4 @@ For install:
 > `pip3.10 install git+https://github.com/SKbarbon/Flet_StoryBoard.git`
 
 for Upgrade:
-> pip3.10 install git+https://github.com/SKbarbon/Flet_StoryBoard.git --upgrade 
+> `pip3.10 install git+https://github.com/SKbarbon/Flet_StoryBoard.git --upgrade`

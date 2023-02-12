@@ -5,7 +5,7 @@ You can use these tools with only two main and simple functions!
 
 ## installation
 For install:
-> pip3.10 install git+https://github.com/SKbarbon/Flet_StoryBoard.git
+> `pip3.10 install git+https://github.com/SKbarbon/Flet_StoryBoard.git`
 
 for Upgrade:
 > pip3.10 install git+https://github.com/SKbarbon/Flet_StoryBoard.git --upgrade 

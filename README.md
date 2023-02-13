@@ -16,6 +16,7 @@ if there was anything wrong, and its not upgrading properly, you should uninstal
 > `pip uninstall Flet_StoryBoard` To uninstall
 
 ## requirements ❗️
+- `git` -for the installation-. [git install site](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - `flet` python library.
 - up than python3.7
 

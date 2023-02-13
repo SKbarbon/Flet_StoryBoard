@@ -12,3 +12,9 @@ for Upgrade:
 
 if there was anything wrong, and its not upgrading properly, you should uninstall this package and reinstall it:
 > `pip uninstall Flet_StoryBoard` To uninstall
+
+## requirements
+- `flet` python library.
+- up than python3.7
+
+## usage

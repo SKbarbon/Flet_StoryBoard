@@ -1,9 +1,9 @@
 # Flet StoryBoard
-Flet StoryBoard is an easy to use tool for building graphical interfaces based on the flet library. Powerful interfaces with simple usability.
+Flet StoryBoard is an easy to use tool for building graphical interfaces based on the `flet` library. Powerful interfaces with simple usability.
 You can use these tools with only two main and simple functions!
 
 ## Goal 🏁
-My goal is making this more powerful and bigger to a allow programmers to build front-end & `flet` controls with just a simple GUI window, and no front-end coding require.
+My goal is making this more powerful and bigger to allow programmers to build front-end & `flet` controls with just a simple GUI window, and no front-end coding require.
 
 ## installation
 For install:
@@ -27,7 +27,18 @@ if there was anything wrong, and its not upgrading properly, you should uninstal
 
 
 ## usage
-soon
+There is just two main easy-to-use functions that you can use to build your-own `flet` widgets.
+### How is it work ?
+`Flet StoryBoard` creates a file with `.fletsb` format that save all your front-end informations. On the building case you can edit this file using only one function and save all its changes. And on the production case you can load this widget using another easy function and it will return the widget as a `flet` `Container`.
+### usage example
+To edit an exist storyboard or to create a new then edit, you can use:
+``
+from Flet_StoryBoard import edit_flet_storyboard
+
+edit_flet_storyboard("MyStoryBoard")
+# This will open a window that will allow you to build your own widget.
+# To save the changes click -save- button or cmd+s/ctrl+s to save.
+``
 
 
 ## comming soon

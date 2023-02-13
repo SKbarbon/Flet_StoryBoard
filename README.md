@@ -61,6 +61,32 @@ flet.app(target=Home)
 # This will load the widget on the page as a Container.
 #* Note: This way will center the contaner on the page by default.
 ```
+To add your functions to work with `on_click`, `on_submit` and other like it, you can do:
+On building/editing case:
+```python
+from Flet_StoryBoard import edit_flet_storyboard
+
+my_functions = {
+    "function1" : print,
+    "function2" : print
+}
+
+edit_flet_storyboard("my_ui", functions=my_functions)
+```
+On production case:
+```python
+from Flet_StoryBoard import load_flet_storyboard
+
+my_functions = {
+    "function1" : print,
+    "function2" : print
+}
+
+def Home(page:flet.Page):
+    load_flet_storyboard("my_ui", page, functions=my_functions)
+
+flet.app(target=Home)
+```
 
 ## comming soon 🔜
 - support all controls that accept sub-controls/childs like `content` on `Container`, `controls` on `Row` and `Column`.

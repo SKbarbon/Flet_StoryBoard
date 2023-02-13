@@ -9,5 +9,6 @@ For install:
 
 for Upgrade:
 > `pip install git+https://github.com/SKbarbon/Flet_StoryBoard.git --upgrade`
+
 if there was anything wrong, and its not upgrading properly, you should uninstall this package and reinstall it:
 > `pip uninstall Flet_StoryBoard` To uninstall

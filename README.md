@@ -31,7 +31,7 @@ There is just two main easy-to-use functions that you can use to build your-own 
 ### How is it work ?
 `Flet StoryBoard` creates a file with `.fletsb` format that save all your front-end informations. On the building case you can edit this file using only one function and save all its changes. And on the production case you can load this widget using another easy function and it will return the widget as a `flet` `Container`.
 ### usage example
-To edit an exist storyboard or to create a new then edit, you can use:
+To edit an exist storyboard or to create a new one then edit it, you can use:
 ```python
 from Flet_StoryBoard import edit_flet_storyboard
 
@@ -39,7 +39,28 @@ edit_flet_storyboard("MyStoryBoard")
 # This will open a window that will allow you to build your own widget.
 # To save the changes click -save- button or cmd+s/ctrl+s to save.
 ```
+On the test or production case you can load the widget that you built on multiple ways, but with just one function to call. here is the explanation:
+```python
+from Flet_StoryBoard import load_flet_storyboard
 
+def Home(page:flet.Page):
+    MyWidget = load_flet_storyboard("my_ui") # returns -> flet.Container
+    page.add(MyWidget)
+
+flet.app(target=Home)
+# This will add the the widget you built as a Container, then you will be able to edit it as a normal flet control.
+```
+If you want to use the another short way, you do this:
+```python
+from Flet_StoryBoard import load_flet_storyboard
+
+def Home(page:flet.Page):
+    load_flet_storyboard("my_ui", page)
+
+flet.app(target=Home)
+# This will load the widget on the page as a Container.
+#* Note: This way will center the contaner on the page by default.
+```
 
 ## comming soon 🔜
 - support all controls that accept sub-controls/childs like `content` on `Container`, `controls` on `Row` and `Column`.

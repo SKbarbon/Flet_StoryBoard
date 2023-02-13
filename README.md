@@ -23,7 +23,11 @@ if there was anything wrong, and its not upgrading properly, you should uninstal
 - support most of built-in `flet` widgets.
 - support buttons `on_click`.
 - bug fixes and ui fix.
-> please create
+* if there is any another issues not fixed yet, please create an issue here: [issues page](https://github.com/SKbarbon/Flet_StoryBoard/issues)
+
+
+## usage
+soon
 
 
 ## comming soon

@@ -3,7 +3,7 @@ Flet StoryBoard is an easy to use tool for building graphical interfaces based o
 You can use these tools with only two main and simple functions!
 
 ## Goal 🏁
-My goal is making this more powerful and bigger to allow programmers to build front-end & `flet` controls with just a simple GUI window, and no front-end coding require.
+My goal is to allow programmers to focus on the back-end, and build the front-end using just a simple easy-to-use window without any front-end coding require.
 
 ## installation
 For install:

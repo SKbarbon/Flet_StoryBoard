@@ -7,10 +7,10 @@ My goal is to allow programmers to focus on the back-end, and build the front-en
 
 ## installation ⬇️
 For install:
-> `pip install git+https://github.com/SKbarbon/Flet_StoryBoard.git`
+> `pip install git+https://github.com/SKbarbon/Flet_StoryBoard.git` or `pip install Flet-StoryBoard`
 
 for Upgrade:
-> `pip install git+https://github.com/SKbarbon/Flet_StoryBoard.git --upgrade`
+> `pip install git+https://github.com/SKbarbon/Flet_StoryBoard.git --upgrade` or `pip install Flet-StoryBoard --upgrade`
 
 if there was anything wrong, and its not upgrading properly, you should uninstall this package and reinstall it:
 > `pip uninstall Flet_StoryBoard` To uninstall

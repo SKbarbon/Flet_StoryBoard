@@ -90,5 +90,7 @@ flet.app(target=Home)
 
 ## comming soon 🔜
 - support all controls that accept sub-controls/childs like `content` on `Container`, `controls` on `Row` and `Column`.
+- support full-page building instead of just a small widgets.
+- put a pre-templates UIs to make it even more simple and fast for developers to build their own GUIs.
 - add custom non-built-in `flet` widgets. like `ColorPicker` and `AudioPlayer` widgets.
 - support external-custom widgets from users/programmers.

@@ -7,17 +7,16 @@ My goal is to allow programmers to focus on the back-end, and build the front-en
 
 ## installation ⬇️
 For install:
-> `pip install git+https://github.com/SKbarbon/Flet_StoryBoard.git`
+> `pip install Flet-StoryBoard`
 
 for Upgrade:
-> `pip install git+https://github.com/SKbarbon/Flet_StoryBoard.git --upgrade`
+> `pip install Flet-StoryBoard --upgrade`
 
 if there was anything wrong, and its not upgrading properly, you should uninstall this package and reinstall it:
 > `pip uninstall Flet_StoryBoard` To uninstall
 
 ## requirements ❗️
-- `git` -for the installation-. [git install site](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-- `flet` python library.
+- `flet` python library -it will auto install it if you dont have it-.
 - up than python3.7
 
 ## whats new on `Flet_StoryBoard` `0.1` 🎉

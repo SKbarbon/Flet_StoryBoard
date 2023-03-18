@@ -19,78 +19,57 @@ if there was anything wrong, and its not upgrading properly, you should uninstal
 - `flet` python library -it will auto install it if you dont have it-.
 - up than python3.7
 
-## whats new on `Flet_StoryBoard` `0.1` 🎉
-- support most of built-in `flet` widgets.
-- support buttons `on_click`.
-- bug fixes and ui fix.
+## whats new on `Flet_StoryBoard` `0.2` 🎉
+- Redesign the editor.
+- We done a major update to the way you create a storyboard, just to make it even more simple to use.
+- Major bug fixes and ui fix.
+- Support Row & Collumn.
+- Support Row-Collumn's sub-controls.
+- Support full page building, instead of just a small widgets.
+- Support editing the storyboard from the cmd/terminal.
+- Big improvment to the preview engine. What you see while edit, its what you will see on the product case.
 * if there is any another issues not fixed yet, please create an issue here: [issues page](https://github.com/SKbarbon/Flet_StoryBoard/issues)
 
 
 ## usage 🤝
-There is just two main easy-to-use functions that you can use to build your-own `flet` widgets.
-### How is it work ?
-`Flet StoryBoard` creates a file with `.fletsb` format that save all your front-end informations. On the building case you can edit this file using only one function and save all its changes. And on the production case you can load this widget using another easy function and it will return the widget as a `flet` `Container`.
-### usage example
-To edit an exist storyboard or to create a new one then edit it, you can use:
-```python
-from Flet_StoryBoard import edit_flet_storyboard
-
-edit_flet_storyboard("MyStoryBoard")
-# This will open a window that will allow you to build your own widget.
-# To save the changes click -save- button or cmd+s/ctrl+s to save.
+There is two main cases you can use with Flet_Storyboard. Lets start with the edit case.
+### edit case.
+To edit an exist storyboard or to create a new one you can use the same cmd command:
+* To create a new one:
+```cmd
+python3 -m Flet_StoryBoard.edit
 ```
-On the test or production case you can load the widget that you built on multiple ways, but with just one function to call. here is the explanation:
-```python
-from Flet_StoryBoard import load_flet_storyboard
-
-def Home(page:flet.Page):
-    MyWidget = load_flet_storyboard("my_ui") # returns -> flet.Container
-    page.add(MyWidget)
-
-flet.app(target=Home)
-# This will add the the widget you built as a Container, then you will be able to edit it as a normal flet control.
+* To edit an exist one:
+```cmd
+python3 -m Flet_StoryBoard.edit <Your StoryBoard file path>
 ```
-If you want to use the another short way, you do this:
+
+### product case.
+To view your storyboard as a `flet` page, you can write this command:
 ```python
 from Flet_StoryBoard import load_flet_storyboard
 
-def Home(page:flet.Page):
-    load_flet_storyboard("my_ui", page)
-
-flet.app(target=Home)
-# This will load the widget on the page as a Container.
-#* Note: This way will center the contaner on the page by default.
+fsb = load_flet_storyboard("My_File")
+fsb.run()
 ```
-To add your functions to work with `on_click`, `on_submit` and other like it, you can do:
-On building/editing case:
-```python
-from Flet_StoryBoard import edit_flet_storyboard
+Easy right 😇 ?
 
-my_functions = {
-    "function1" : print,
-    "function2" : print
-}
-
-edit_flet_storyboard("my_ui", functions=my_functions)
-```
-On production case:
+To link your functions with your buttons or whatever, you can add the functions like this:
 ```python
 from Flet_StoryBoard import load_flet_storyboard
 
 my_functions = {
-    "function1" : print,
-    "function2" : print
+    "MyFirstFunction" : MyFirstFunction
 }
 
-def Home(page:flet.Page):
-    load_flet_storyboard("my_ui", page, functions=my_functions)
-
-flet.app(target=Home)
+fsb = load_flet_storyboard("My_File", functions=my_functions)
+fsb.run()
 ```
+Then inside the editor you can type the function name inside the action field of a control.
 
 ## comming soon 🔜
-- support all controls that accept sub-controls/childs like `content` on `Container`, `controls` on `Row` and `Column`.
-- support full-page building instead of just a small widgets.
+- support more `flet` built-in controls.
 - put a pre-templates UIs to make it even more simple and fast for developers to build their own GUIs.
 - add custom non-built-in `flet` widgets. like `ColorPicker` and `AudioPlayer` widgets.
 - support external-custom widgets from users/programmers.
+- Learn/Help page on the editor to help them learing or with solving problems.

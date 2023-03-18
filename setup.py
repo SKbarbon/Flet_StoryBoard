@@ -5,9 +5,8 @@ with open("README.md", "r") as fh:
 
 setup(
     name='Flet StoryBoard',
-    version='0.1',
+    version='0.2.4',
     author='SKbarbon',
-    author_email='none',
     description='A UI-Builder that helps programmers build the front-end without codding it.',
     long_description=long_description,
     url='https://github.com/SKbarbon/Flet-StoryBoard',

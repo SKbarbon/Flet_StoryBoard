@@ -1,0 +1,179 @@
+{
+    "rules" : [
+        {
+            "case" : {},
+            "sugs" : [
+                {
+                    "class" : "Title",
+                    "about" : "Add a 'sign in' title so users know about this page.",
+                    "props" : {
+                        "title" : "sign in",
+                        "size" : 26
+                    }
+                }
+            ]
+        },
+        {
+            "case" : {"Title":1},
+            "sugs" : [
+                {
+                    "class" : "Paragraph",
+                    "about" : "Add a paragraph describing the current page, in a little more detail.",
+                    "props" : {
+                        "text" : "You look like you did not sign in.\nPlease sign in to start using the app 😃."
+                    }
+                },
+                {
+                    "class" : "TextField",
+                    "about" : "Add a username TextField so users can enter their names.",
+                    "props" : {
+                        "label" : "username",
+                        "hint_text" : "username"
+                    }
+                }
+            ]
+        },
+        {
+            "case" : {"Title":1, "Paragraph":1},
+            "sugs" : [
+                {
+                    "class" : "TextField",
+                    "about" : "Add a username TextField so users can enter their names.",
+                    "props" : {
+                        "label" : "username",
+                        "hint_text" : "username",
+                        "width" : 250,
+                        "height" : 50
+                    }
+                }
+            ]
+        },
+        {
+            "case" : {"Title":1, "Paragraph":1, "TextField":1},
+            "sugs" : [
+                {
+                    "class" : "TextField",
+                    "about" : "Add a password TextField so users can enter their passwords.",
+                    "props" : {
+                        "label" : "password",
+                        "hint_text" : "password",
+                        "password" : true,
+                        "width" : 250,
+                        "height" : 50
+                    }
+                }
+            ]
+        },
+        {
+            "case" : {"Title":1, "Paragraph":1, "TextField":2},
+            "sugs" : [
+                {
+                    "class" : "Button",
+                    "about" : "Add a button to submit the sign-in.",
+                    "props" : {
+                        "text" : "Done!",
+                        "text_color" : "white",
+                        "bgcolor" : "blue",
+                        "width" : 100,
+                        "height" : 40
+                    }
+                }
+            ]
+        },
+        {
+            "case" : {"Title":1, "TextField":1},
+            "sugs" : [
+                {
+                    "class" : "TextField",
+                    "about" : "Add a password TextField so users can enter their passwords.",
+                    "props" : {
+                        "label" : "password",
+                        "hint_text" : "password",
+                        "password" : true,
+                        "width" : 250,
+                        "height" : 50
+                    }
+                }
+            ]
+        },
+        {
+            "case" : {"Title":1, "TextField":2},
+            "sugs" : [
+                {
+                    "class" : "Button",
+                    "about" : "Add a button to submit the sign-in.",
+                    "props" : {
+                        "text" : "Done!",
+                        "text_color" : "white",
+                        "bgcolor" : "blue",
+                        "width" : 100,
+                        "height" : 40
+                    }
+                }
+            ]
+        },
+        {
+            "case" : {"Paragraph":1},
+            "sugs" : [
+                {
+                    "class" : "TextField",
+                    "about" : "Add a username TextField so users can enter their names.",
+                    "props" : {
+                        "label" : "username",
+                        "hint_text" : "username",
+                        "width" : 250,
+                        "height" : 50
+                    }
+                }
+            ]
+        },
+        {
+            "case" : {"Paragraph":1, "TextField":1},
+            "sugs" : [
+                {
+                    "class" : "TextField",
+                    "about" : "Add a password TextField so users can enter their passwords.",
+                    "props" : {
+                        "label" : "password",
+                        "hint_text" : "password",
+                        "password" : true,
+                        "width" : 250,
+                        "height" : 50
+                    }
+                }
+            ]
+        },
+        {
+            "case" : {"Paragraph":1, "TextField":2},
+            "sugs" : [
+                {
+                    "class" : "Button",
+                    "about" : "Add a button to submit the sign-in.",
+                    "props" : {
+                        "text" : "Done!",
+                        "text_color" : "white",
+                        "bgcolor" : "blue",
+                        "width" : 100,
+                        "height" : 40
+                    }
+                }
+            ]
+        },
+        {
+            "case" : {"Title":1, "Paragraph":1, "TextField":2, "Label":1},
+            "sugs" : [
+                {
+                    "class" : "Button",
+                    "about" : "Add a button to submit the sign-in.",
+                    "props" : {
+                        "text" : "Done!",
+                        "text_color" : "white",
+                        "bgcolor" : "blue",
+                        "width" : 100,
+                        "height" : 40
+                    }
+                }
+            ]
+        }
+    ]
+}

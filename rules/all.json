@@ -1,7 +1,6 @@
 {
     "all_rules" : {
       "sign_in page" : "https://raw.githubusercontent.com/SKbarbon/Flet_StoryBoard/main/rules/signin_rules.json",
-      "about_me page" : "https://raw.githubusercontent.com/SKbarbon/Flet_StoryBoard/main/rules/about_me.json",
-      "contact_me page" : ""
+      "about_me page" : "https://raw.githubusercontent.com/SKbarbon/Flet_StoryBoard/main/rules/about_me.json"
     }
 }

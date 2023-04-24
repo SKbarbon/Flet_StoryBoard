@@ -16,60 +16,46 @@ if there was anything wrong, and its not upgrading properly, you should uninstal
 > `pip uninstall Flet_StoryBoard` To uninstall
 
 ## requirements ❗️
-- `flet` python library -it will auto install it if you dont have it-.
+- `flet` python library - it will auto install it if you dont have it-.
+- `requests` python library - it will auto install it if you dont have it-.
 - up than python3.7
 
-## whats new on `Flet_StoryBoard` `0.2` 🎉
-- Redesign the editor.
-- We done a major update to the way you create a storyboard, just to make it even more simple to use.
-- Major bug fixes and ui fix.
-- Support Row & Collumn.
-- Support Row-Collumn's sub-controls.
-- Support full page building, instead of just a small widgets.
-- Support editing the storyboard from the cmd/terminal.
-- Big improvment to the preview engine. What you see while edit, its what you will see on the product case.
+## whats new on `Flet_StoryBoard` `1.0` 🎉
+- ReSupport custom widgets with flet.
+- Multiple pages support.
+- New Suggestions
+- New way to load the StoryBoard on your app.
+- The ability of add external `flet` controls inside of the StoryBoard.
+- New Feature called `Smart suggestions`. It get your goal then suggest things based on it.
+- Support templates. A template is a file contain pre-set props for all StoryBoard's widgets, like fonts and default text color. - soon -
+- ReBuild the architecture of the library.
+* Please read the docs to know more about library usage. [docs page](https://github.com/SKbarbon/Flet_StoryBoard/wiki)
 * if there is any another issues not fixed yet, please create an issue here: [issues page](https://github.com/SKbarbon/Flet_StoryBoard/issues)
 
 
-## usage 🤝
-There is two main cases you can use with Flet_Storyboard. Lets start with the edit case.
-### edit case.
-To edit an exist storyboard or to create a new one you can use the same cmd command:
-* To create a new one:
+## usage & examples 🤝
+There is a very simple docs here about library usage.
+[docs page](https://github.com/SKbarbon/Flet_StoryBoard/wiki)
+
+### create/edit your own StoryBoard
 ```cmd
-python3 -m Flet_StoryBoard.edit
+python3 -m Flet_StoryBoard.edit myUI.fletsb
 ```
-* To edit an exist one:
-```cmd
-python3 -m Flet_StoryBoard.edit <Your StoryBoard file path>
-```
+It will edit the exist one or create a new one if not.
 
-### product case.
-To view your storyboard as a `flet` page, you can write this command:
+### load a StoryBoard
+To load your StoryBoard on your app, you can do this example code:
+
 ```python
-from Flet_StoryBoard import load_flet_storyboard
+from Flet_StoryBoard import LoadStoryBoard, StoryBoard
 
-fsb = load_flet_storyboard("My_File")
-fsb.run()
+def main (storyBoard:StoryBoard):
+    pass
+
+LoadStoryBoard(target_function=main, storyboard_file_path="myUI.fletsb")
 ```
-Easy right 😇 ?
 
-To link your functions with your buttons or whatever, you can add the functions like this:
-```python
-from Flet_StoryBoard import load_flet_storyboard
-
-my_functions = {
-    "MyFirstFunction" : MyFirstFunction
-}
-
-fsb = load_flet_storyboard("My_File", functions=my_functions)
-fsb.run()
-```
-Then inside the editor you can type the function name inside the action field of a control.
+To know more about the `StoryBoard` class, follow the [docs page](https://github.com/SKbarbon/Flet_StoryBoard/wiki) .
 
 ## comming soon 🔜
-- support more `flet` built-in controls.
-- put a pre-templates UIs to make it even more simple and fast for developers to build their own GUIs.
 - add custom non-built-in `flet` widgets. like `ColorPicker` and `AudioPlayer` widgets.
-- support external-custom widgets from users/programmers.
-- Learn/Help page on the editor to help them learing or with solving problems.

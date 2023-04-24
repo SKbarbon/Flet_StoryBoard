@@ -5,12 +5,12 @@ with open("README.md", "r") as fh:
 
 setup(
     name='Flet StoryBoard',
-    version='0.2.4',
+    version='0.2.6',
     author='SKbarbon',
     description='A UI-Builder that helps programmers build the front-end without codding it.',
     long_description=long_description,
     url='https://github.com/SKbarbon/Flet-StoryBoard',
-    install_requires=["flet"],
+    install_requires=["flet==0.5.2", "requests"],
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

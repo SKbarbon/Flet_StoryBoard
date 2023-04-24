@@ -73,4 +73,3 @@ Then inside the editor you can type the function name inside the action field of
 - add custom non-built-in `flet` widgets. like `ColorPicker` and `AudioPlayer` widgets.
 - support external-custom widgets from users/programmers.
 - Learn/Help page on the editor to help them learing or with solving problems.
-- support multiple sub-pages.

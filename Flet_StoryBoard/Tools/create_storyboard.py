@@ -6,7 +6,8 @@ def Create_StoryBoard (file_name, template="default", storyboard_suggestions=Fal
         storyboard_defualt_template = {
             "storyboard_settings" : {
                 "template" : "default",
-                "storyboard_suggestions" : storyboard_suggestions
+                "storyboard_suggestions" : storyboard_suggestions,
+                "allow_scroll" : False
             },
             "pages" : {
                 "main" : {

@@ -16,6 +16,7 @@ from ..Engines.edit_widget_engine import editWidgetsEngine
 from ..Engines.edit_subwidgets_engin import editSubWidgetsEngine
 from ..Engines.suggesting_engine import SuggestingEngine
 from ..WIDGETS.All import all_widgets
+from ..pages.settings import SettingsPage
 
 
 class mainPage:
@@ -41,6 +42,7 @@ class mainPage:
         page.title = f"Flet StoryBoard - {self.file_path}"
         page.spacing = 0
         page.bgcolor = "black"
+        page.vertical_alignment = flet.MainAxisAlignment.CENTER
         page.window_width = 850
         page.window_height = 650
         page.window_min_width = 850
@@ -104,7 +106,7 @@ class mainPage:
             tf.focus()
         mr = flet.Row([], width=250, scroll=True)
         mr.controls.append(flet.TextButton(content=flet.Text("✨", size=18), on_click=self.edit_page_suggestion_state, width=35))
-        new_page_button = flet.Container(flet.Row([flet.Text("+ Page", size=12)], alignment="center"), on_click=ask_for_new_page_name, 
+        new_page_button = flet.Container(flet.Row([flet.Text("+ Page", size=12, color="black")], alignment="center"), on_click=ask_for_new_page_name, 
         bgcolor="white", width=60, height=30, border_radius=12)
         mr.controls.append(new_page_button)
 
@@ -130,7 +132,8 @@ class mainPage:
             ),
             actions=[
                 Row([
-                    flet.TextButton(content=flet.Text("Settings", size=12, color="white")),
+                    flet.TextButton(content=flet.Text("Settings", size=12, color="white"), 
+                    on_click=self.open_settings_page),
                     flet.ElevatedButton("Save", bgcolor="white", color="black", width=100, height=35, 
                     on_click=self.save_all, tooltip="click to save | also control + S"),
                     Text("    ")
@@ -244,3 +247,6 @@ class mainPage:
         c.controls.append(flet.Row([flet.Text("more will come soon", color="white", size=13)], alignment="center"))
         c.scroll = True
         self.left_section.show_new_content(c)
+    
+    def open_settings_page (self, *e):
+        SettingsPage(self.page, self)

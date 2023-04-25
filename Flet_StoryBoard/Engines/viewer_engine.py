@@ -49,8 +49,10 @@ class viewerEngine:
         p : flet.Container = self.parent_view
         page_settings = self.content["pages"][self.page_name]["settings"]
         bgcolor = page_settings["bgcolor"]
-
         p.bgcolor = bgcolor
+
+        if "allow_scroll" in self.main_class.dict_content["storyboard_settings"]:
+            self.widgets_parent_view.scroll = self.main_class.dict_content["storyboard_settings"]["allow_scroll"]
     
     def create_development_container (self, cls, widget_number):
         def on_click (cls):

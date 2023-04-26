@@ -6,6 +6,8 @@ You can use these tools with only two main and simple functions!
 My goal is to allow programmers to focus on the back-end, and build the front-end using just a simple easy-to-use window without any front-end coding require.
 
 ## installation ⬇️
+- up than python3.7
+
 For install:
 > `pip install Flet-StoryBoard`
 
@@ -15,10 +17,9 @@ for Upgrade:
 if there was anything wrong, and its not upgrading properly, you should uninstall this package and reinstall it:
 > `pip uninstall Flet_StoryBoard` To uninstall
 
-## requirements ❗️
-- `flet` python library - it will auto install it if you dont have it-.
-- `requests` python library - it will auto install it if you dont have it-.
-- up than python3.7
+## Little Peek
+
+<img width="1500" alt="Screenshot 2023-04-26 at 12 17 33 PM" src="https://user-images.githubusercontent.com/86029286/234530619-004e0eca-d2b3-47ad-94fe-37ef5ae0fa68.png">
 
 ## whats new on `Flet_StoryBoard` `1.0` 🎉
 - ReSupport custom widgets with flet.

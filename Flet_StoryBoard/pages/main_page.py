@@ -1,6 +1,6 @@
 #! This is the editing page of a storyboard.
 from flet import Page, Row, Text
-from ..WIDGETS.All import all_widgets
+from ..widgets.All import all_widgets
 import flet
 import os
 import json
@@ -10,12 +10,12 @@ import requests
 
 #* local imports
 from ..sections.left_section import leftSection
-from ..sections.preview_section import previewSection
+from ..sections.preview_section import PreviewSection
 from ..sections.edit_section import editSection
-from ..Engines.edit_widget_engine import editWidgetsEngine
-from ..Engines.edit_subwidgets_engin import editSubWidgetsEngine
-from ..Engines.suggesting_engine import SuggestingEngine
-from ..WIDGETS.All import all_widgets
+from ..engines.edit_widget_engine import EditWidgetsEngine
+from ..engines.edit_subwidgets_engine import EditSubWidgetsEngine
+from ..engines.suggesting_engine import SuggestingEngine
+from ..widgets.All import all_widgets
 from ..pages.settings import SettingsPage
 
 
@@ -32,8 +32,8 @@ class mainPage:
 
         #? Copy of classes
         self.all_widgets = all_widgets
-        self._editWidgetsEngine = editWidgetsEngine
-        self._editSubWidgetsEngine = editSubWidgetsEngine
+        self._editWidgetsEngine = EditWidgetsEngine
+        self._editSubWidgetsEngine = EditSubWidgetsEngine
 
         #? Run the app
         flet.app(target=self.app)
@@ -58,7 +58,7 @@ class mainPage:
 
         #? append the sections
         self.left_section = leftSection(page, self, self.main_row)
-        self.preview_section = previewSection(page, self, self.main_row)
+        self.preview_section = PreviewSection(page, self, self.main_row)
         self.edit_section = editSection(page, self, self.main_row)
 
         #? Set finals of page.
@@ -178,7 +178,7 @@ class mainPage:
     def add_new_widget (self, widget_name, page_name=None):
         widget_number = len(self.dict_content["pages"][self.current_page_name]["widgets"])-1
         widget_class = all_widgets[widget_name]["class"]
-        widget_class = widget_class(self, self.preview_section.main_view_collumn, widget_number=widget_number)
+        widget_class = widget_class(self, self.preview_section.main_view_column, widget_number=widget_number)
         
         self.dict_content["pages"][self.current_page_name]["widgets"].append(widget_class.template)
         

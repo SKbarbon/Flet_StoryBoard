@@ -1,4 +1,2 @@
-
-
 from .load_storyboard import LoadStoryBoard
-from .Tools.storyboard_class import StoryBoard
+from .tools.storyboard_class import StoryBoard

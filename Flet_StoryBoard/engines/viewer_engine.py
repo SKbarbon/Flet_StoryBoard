@@ -1,7 +1,7 @@
 from flet import Page, Container
 import flet
 
-from ..WIDGETS.All import all_widgets
+from ..widgets.All import all_widgets
 
 
 class viewerEngine:

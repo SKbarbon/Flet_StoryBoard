@@ -3,7 +3,7 @@ from flet import Page, AnimatedSwitcher, Container, Row, Column
 import flet
 import time
 
-from ..WIDGETS.All import all_widgets
+from ..widgets.All import all_widgets
 from ..ui_toolkit.widget_browser_frame import Widget_Browse_Frame
 
 class leftSection:

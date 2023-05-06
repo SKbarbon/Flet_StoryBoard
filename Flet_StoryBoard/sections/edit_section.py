@@ -1,7 +1,7 @@
 from flet import Column, Page, Row
 import flet
 
-from ..Engines.edit_widget_engine import editWidgetsEngine
+from ..engines.edit_widget_engine import EditWidgetsEngine
 
 
 class editSection:
@@ -15,4 +15,4 @@ class editSection:
         main_row.controls.append(self.main_column)
     
     def edit_widget_using_engine (self, widget_number):
-        ee = editWidgetsEngine(main_class=self.main_class, section_view=self.main_column, widget_number=widget_number)
+        ee = EditWidgetsEngine(main_class=self.main_class, section_view=self.main_column, widget_number=widget_number)

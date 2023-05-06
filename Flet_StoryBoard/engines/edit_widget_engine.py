@@ -52,7 +52,7 @@ class EditWidgetsEngine:
             prop_type = default_args[prop_name]["type"]
 
             # These statements below are for adding the fields for edit a widget.
-            if type(prop_type(), str):
+            if isinstance(prop_type(), str):
                 tf = flet.TextField(width=160, bgcolor=flet.colors.WHITE, color=flet.colors.BLACK, label=prop_name)
                 tf.value = prop_value
                 self.section_view.controls.append(flet.Row([tf], alignment=flet.MainAxisAlignment.CENTER))

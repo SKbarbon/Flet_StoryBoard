@@ -11,9 +11,7 @@ class TextField(object):
             on_change=self.on_change_text,
             on_submit=self.on_end_type,
             selection_color=flet.colors.BLACK,
-            cursor_color=flet.colors.BLACK,
-            # issue: focused_color can't have value "color"
-            focused_color="color"
+            cursor_color=flet.colors.BLACK
         )
 
         # all args

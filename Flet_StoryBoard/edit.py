@@ -19,6 +19,11 @@ class manage_edit:
         if self.file_name is None and debug_mode:
             print("Debug alert: Unexpected exit, no errors.")
             sys.exit("Exit.")
+            return
+        
+        if self.file_name is None:
+            sys.exit("Exit.")
+            return
 
         if not str(self.file_name).endswith(".fletsb"):
             self.file_name = str(self.file_name) + ".fletsb"

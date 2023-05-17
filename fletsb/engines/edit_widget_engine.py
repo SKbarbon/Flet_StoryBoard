@@ -60,7 +60,7 @@ class EditWidgetsEngine:
                 if "multi_line" in default_args[prop_name]:
                     tf.multiline = True
 
-            elif isinstance(prop_type(), int):
+            elif type(prop_type()) == type(int()):
                 slid = flet.Slider(min=0, max=500, divisions=500, label="{value}", width=160)
                 slid.value = int(prop_value)
                 self.section_view.controls.append(
@@ -82,7 +82,7 @@ class EditWidgetsEngine:
                 )
                 self.all_fields[prop_name] = slid
 
-            elif isinstance(prop_type(), bool):
+            elif type(prop_type()) == type(bool()):
                 tog = flet.Switch()
                 tog.value = prop_value
                 self.section_view.controls.append(

@@ -40,7 +40,7 @@ There is a very simple docs here about library usage.
 
 ### create/edit your own StoryBoard
 ```cmd
-python3 -m Flet_StoryBoard.edit myUI.fletsb
+python3 -m fletsb.edit myUI.fletsb
 ```
 It will edit the existing one or create a new one if not.
 
@@ -48,7 +48,7 @@ It will edit the existing one or create a new one if not.
 To load your StoryBoard on your app, you can do this example code:
 
 ```python
-from Flet_StoryBoard import LoadStoryBoard, StoryBoard
+from fletsb import LoadStoryBoard, StoryBoard
 
 def main (storyBoard:StoryBoard):
     pass

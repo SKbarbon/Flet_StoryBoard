@@ -6,7 +6,7 @@ import flet
 
 
 class LoadStoryBoard:
-    def __init__(self, target_function, storyboard_file_path: str):
+    def __init__(self, target_function, storyboard_file_path: str, view=flet.FLET_APP):
         # set up the important props
         self.current_page_name = "main"
         self.file_path = storyboard_file_path
@@ -18,7 +18,7 @@ class LoadStoryBoard:
         # copy of things
         self.viewerEngine = viewerEngine
         # Run the app.
-        flet.app(target=self.run)
+        flet.app(target=self.run, view=view)
 
     def run(self, page: flet.Page):
         self.storyboard_class = StoryBoard(page=page, main_class=self)
@@ -27,6 +27,3 @@ class LoadStoryBoard:
         ve = viewerEngine(self, self.dict_content, self.current_page_name, page, page, self.development_mode)
         self.target_function(self.storyboard_class)
         page.update()
-
-    def setup_storyboard_class(self):
-        pass

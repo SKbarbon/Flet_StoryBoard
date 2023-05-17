@@ -12,10 +12,10 @@ My goal is to allow programmers to focus on the back-end, and build the front-en
 - Python > 3.7
 
 For install:
-> `pip install Flet-StoryBoard`
+> `pip install Flet_StoryBoard`
 
 for Upgrade:
-> `pip install Flet-StoryBoard --upgrade`
+> `pip install Flet_StoryBoard --upgrade`
 
 if there was anything wrong, and it's not upgrading properly, you should uninstall this package and reinstall it:
 > `pip uninstall Flet_StoryBoard` To uninstall

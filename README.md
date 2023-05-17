@@ -1,5 +1,8 @@
 # Flet StoryBoard
 Flet StoryBoard is a python library that have an easy to use tools for building graphical interfaces based on python `flet` library. Powerful interfaces with simple usability.
+
+So build UI apps using without coding the front-end, then connect it with python back-end!!!
+
 You can use these tools with only two main and simple functions!
 
 ## Goal 🏁

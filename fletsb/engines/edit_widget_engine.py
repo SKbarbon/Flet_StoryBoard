@@ -42,6 +42,14 @@ class EditWidgetsEngine:
         title = flet.Text(f"Edit {class_name}", size=25, weight=flet.FontWeight.BOLD, color=flet.colors.WHITE)
         self.section_view.controls.append(title)
 
+        # ---Remove the not defualt arg-----
+        props_updated = dict(widget_content["properties"])
+        for checker in widget_content["properties"]:
+            if checker not in default_args:
+                props_updated.pop(checker)
+        widget_content["properties"] = dict(props_updated)
+        # ---Remove the not defualt arg-----
+
         for t in widget_content["properties"]:
             prop_name = t
             prop_value = widget_content["properties"][t]

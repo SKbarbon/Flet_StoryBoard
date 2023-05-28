@@ -17,6 +17,7 @@ from ..engines.edit_subwidgets_engine import EditSubWidgetsEngine
 from ..engines.suggesting_engine import SuggestingEngine
 from ..widgets.All import all_widgets
 from ..pages.settings import SettingsPage
+from ..engines.bardai_engine import BardapiSupport
 
 
 class mainPage:
@@ -52,9 +53,15 @@ class mainPage:
         page.window_center()
         page.update()
 
+        # main stack
+        self.main_stack = flet.Stack(expand=True)
+        page.add(self.main_stack)
+
         # The main row
         self.main_row = Row(scroll=False)
-        page.add(self.main_row)
+        # page.add(self.main_row)
+        self.main_stack.controls.append(self.main_row)
+        page.update()
 
         #? append the sections
         self.left_section = leftSection(page, self, self.main_row)
@@ -159,6 +166,10 @@ class mainPage:
         elif str(key).lower() == "s" and meta:
             #? Clicked to save file
             self.save_all()
+        elif str(key).lower() == "b" and ctrl:
+            BardapiSupport(self.push_on_top_views, self)
+        elif str(key).lower() == "b" and meta:
+            BardapiSupport(self.push_on_top_views, self)
     
 
     def save_all (self, *args):
@@ -250,3 +261,22 @@ class mainPage:
     
     def open_settings_page (self, *e):
         SettingsPage(self.page, self)
+    
+
+    def push_on_top_views (self, container:flet.Container):
+        def erase_all ():
+            self.main_stack.controls.remove(col)
+            self.main_stack.update()
+        
+        container.width = self.page.width
+        container.height = self.page.height
+        col = flet.Column([
+                flet.Row([container], alignment="center")
+            ], alignment="center")
+        self.main_stack.controls.append(
+            col
+        )
+        if self.main_stack.page != None:
+            self.main_stack.update()
+        
+        return erase_all

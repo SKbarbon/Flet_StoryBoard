@@ -1,13 +1,16 @@
 import json
 
 
-def Create_StoryBoard(file_name, template="default", storyboard_suggestions=False, main_page_suggestions_rules="none"):
+def Create_StoryBoard(file_name, template="default", storyboard_suggestions=False, 
+    main_page_suggestions_rules="none", support_bard_ai=False):
+
     if template == "default":
         storyboard_default_template = {
             "storyboard_settings": {
                 "template": "default",
                 "storyboard_suggestions": storyboard_suggestions,
-                "allow_scroll": False
+                "allow_scroll": False,
+                "support_bard" : support_bard_ai
             },
             "pages": {
                 "main": {

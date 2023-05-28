@@ -1,6 +1,7 @@
 """
 The bardAPI integration.
 """
+import requests
 from bardapi import Bard
 import os, flet, random, time, json
 
@@ -74,6 +75,7 @@ class BardapiSupport:
         self.main_class = main_class
         container = flet.Container(on_click=self.close_the_input)
         self.container = container
+        self.bard = None
 
         if self.get_bard_token() != None:
             bard_token = flet.TextField(hint_text="Put your bard Token..", 
@@ -146,16 +148,34 @@ class BardapiSupport:
 
         return bardapi_token
     
-    def ask_bard (self, message):
+    def bard_init(self):
         token = self.get_bard_token()
-        if token == None:
+        if token is None:
             return False
 
-        os.environ['_BARD_API_KEY'] = f"{token}"
-        bard = Bard(timeout=10)
-        message_new = new_widgets_template.replace("</usermessage/>", message)
-        return str(bard.get_answer(message_new)['content'])
-    
+        os.environ['_BARD_API_KEY'] = str(token)
+
+        session = requests.Session()
+        session.headers = {
+            "Host": "bard.google.com",
+            "X-Same-Domain": "1",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+            "Origin": "https://bard.google.com",
+            "Referer": "https://bard.google.com/",
+        }
+        session.cookies['__Secure-1PSID'] = os.environ.get("_BARD_API_KEY")
+        self.bard = Bard(session=session, timeout=10)
+
+    def ask_bard(self, message):
+        if self.bard is not None:
+            message_new = new_widgets_template.replace("</usermessage/>", message)
+            return self.bard.get_answer(message_new)['content']
+        else:
+            self.bard_init()
+            message_new = new_widgets_template.replace("</usermessage/>", message)
+            return self.bard.get_answer(message_new)['content']
+
     def load_the_respone_to_dict (self, respone:str):
         full_string = ""
         found_it = False

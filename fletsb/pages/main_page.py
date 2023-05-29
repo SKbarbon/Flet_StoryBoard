@@ -32,6 +32,7 @@ class mainPage:
         self.dict_content = json.loads(open(file_path, encoding="utf-8").read())
 
         #? Copy of classes
+        self.bard_support_bridge = BardapiSupport()
         self.all_widgets = all_widgets
         self._editWidgetsEngine = EditWidgetsEngine
         self._editSubWidgetsEngine = EditSubWidgetsEngine
@@ -167,9 +168,11 @@ class mainPage:
             #? Clicked to save file
             self.save_all()
         elif str(key).lower() == "b" and ctrl:
-            BardapiSupport(self.push_on_top_views, self)
+            #? push bard input
+            self.bard_support_bridge.push_ui(self.push_on_top_views, self)
         elif str(key).lower() == "b" and meta:
-            BardapiSupport(self.push_on_top_views, self)
+            #? push bard input
+            self.bard_support_bridge.push_ui(self.push_on_top_views, self)
     
 
     def save_all (self, *args):

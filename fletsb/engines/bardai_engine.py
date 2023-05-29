@@ -2,7 +2,7 @@
 The bardAPI integration.
 """
 from bardapi import Bard
-import os, flet, random, time, json
+import os, flet, random, time, json, requests
 
 
 new_widgets_template = """
@@ -63,6 +63,7 @@ The user message is:
 </usermessage/>
 ```
 
+Try not to put the user message on any widget except if he did ask for it.
 Please make sure that you are making a good UI/UX practice with the widgets properties. For example if the title is on center alianment then make the paragraph alianment also in center. The page color is </bg_page/>, so make sure that you are not using the same color of the page color for the text color so the user can see the text.
 Use each widget for its correct job. For example if you want a link to open in the browser, use the `Open Url` widget.
 Dont set the `widget_class_name` on the json to a name that does not exists above, For example if the user ask for a text, there is no Text widget, so you must search for a similar supported widget like the `title`.
@@ -71,7 +72,10 @@ Put all the widgets as shown on the previous json example.
 """
 
 class BardapiSupport:
-    def __init__(self, push_on_top_views_function, main_class) -> None:
+    def __init__(self) -> None:
+        self.bard_init()
+
+    def push_ui (self, push_on_top_views_function, main_class):
         main_class.main_row.opacity = 0.2
         main_class.main_row.update()
 
@@ -119,7 +123,8 @@ class BardapiSupport:
         e.control.update()
         
         try: result = self.ask_bard(e.control.value)
-        except: print("Error with connecting with bard."); self.close_the_input(self.container); return
+        except:
+            print("Error with connecting with bard."); self.close_the_input(self.container); return
 
         try:
             result = self.load_the_respone_to_dict(result)
@@ -150,9 +155,29 @@ class BardapiSupport:
 
         return bardapi_token
     
+    def bard_init(self):
+        token = self.get_bard_token()
+        if token is None:
+            return False
+
+        os.environ['_BARD_API_KEY'] = str(token)
+
+        session = requests.Session()
+        self.session = session
+        session.headers = {
+            "Host": "bard.google.com",
+            "X-Same-Domain": "1",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+            "Origin": "https://bard.google.com",
+            "Referer": "https://bard.google.com/",
+        }
+        session.cookies['__Secure-1PSID'] = os.environ.get("_BARD_API_KEY")
+        self.bard = Bard(session=session, timeout=12)
+    
     def ask_bard (self, message):
         self.container.content = flet.Column([flet.Row([
-            flet.Text("The AI is thinking 😃!", weight="bold", size=26)
+            flet.Text("The AI is thinking 😃!", weight="bold", size=26, color="white")
         ], alignment="center")], alignment="center")
         self.container.update()
 
@@ -161,10 +186,9 @@ class BardapiSupport:
             return False
 
         os.environ['_BARD_API_KEY'] = f"{token}"
-        bard = Bard(timeout=12)
         message_new = new_widgets_template.replace("</usermessage/>", message)
         message_new = str(message_new).replace("</bg_page/>", str(self.main_class.page.bgcolor))
-        return str(bard.get_answer(message_new)['content'])
+        return str(self.bard.get_answer(message_new)['content'])
     
     def load_the_respone_to_dict (self, respone:str):
         full_string = ""

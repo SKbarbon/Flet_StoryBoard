@@ -1,9 +1,5 @@
 # Flet StoryBoard
-Flet StoryBoard is a python library that have an easy to use tools for building graphical interfaces based on python `flet` library. Powerful interfaces with simple usability.
-
-So build UI apps using without coding the front-end, then connect it with python back-end!!!
-
-You can use these tools with only two main and simple functions!
+Flet StoryBoard is a python library that have an easy to use tools for building graphical interfaces based on python `flet` library. Powerful interfaces with simple usability. Build the UI with ease of `fletsb`, then connect it with your back-end!
 
 ## Goal 🏁
 My goal is to allow programmers to focus on the back-end, and build the front-end using just a simple easy-to-use window without any front-end coding require.
@@ -11,14 +7,13 @@ My goal is to allow programmers to focus on the back-end, and build the front-en
 ## installation ⬇️
 - Python > 3.7
 
+You can try Flet_StoryBoard on web!, just click here: [fletsb on web](https://skbarbon.github.io/wfletsb/)
+
 For install:
 > `pip install Flet_StoryBoard`
 
 for Upgrade:
 > `pip install Flet_StoryBoard --upgrade`
-
-if there was anything wrong, and it's not upgrading properly, you should uninstall this package and reinstall it:
-> `pip uninstall Flet_StoryBoard` To uninstall
 
 ## Little Peek
 
@@ -38,6 +33,9 @@ if there was anything wrong, and it's not upgrading properly, you should uninsta
 
 
 ## usage & examples 🤝
+You can use the editor just from the web!, click here to start:
+[fletsb on web](https://skbarbon.github.io/wfletsb)
+
 There is a very simple docs here about library usage.
 [docs page](https://github.com/SKbarbon/Flet_StoryBoard/wiki)
 
@@ -60,6 +58,3 @@ LoadStoryBoard(target_function=main, storyboard_file_path="myUI.fletsb")
 ```
 
 To know more about the `StoryBoard` class, follow the [docs page](https://github.com/SKbarbon/Flet_StoryBoard/wiki) .
-
-## Coming Soon 🔜
-- add custom non-built-in `flet` widgets. like `ColorPicker` and `AudioPlayer` widgets.

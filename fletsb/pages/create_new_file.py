@@ -10,6 +10,7 @@ from ..tools.create_storyboard import Create_StoryBoard
 class CreateNewFile:
     def __init__(self, page: flet.Page, manage_class):
         page.window_resizable = False
+        page.window_title_bar_hidden = True
         page.update()
         page.window_center()
 
@@ -97,6 +98,11 @@ class CreateNewFile:
                 self.file_name = str(event.control.value)
 
         page = self.page
+
+        page.window_title_bar_hidden = False
+        page.update()
+        page.window_center()
+
         mother = self.mother
         main_column = flet.Column()
         mother.content = main_column
@@ -127,6 +133,11 @@ class CreateNewFile:
 
     def page_three(self, *args):
         page = self.page
+
+        page.window_title_bar_hidden = True
+        page.update()
+        page.window_center()
+
         page.title = page.title
         mother = self.mother
         main_column = flet.Column()

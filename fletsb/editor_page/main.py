@@ -1,6 +1,7 @@
 from .appbar import AppBar
+from ..tools.manage_keyboard_commands import keyboard_commands
 import flet
-import os, time
+import os, time, json
 
 
 class MainPage:
@@ -10,15 +11,22 @@ class MainPage:
             raise FileExistsError(f"There is no Flet StoryBoard on path '{file_path}' .")
         
         # save props
+        self.current_page_name = "main"
         self.file_path = file_path
+        self.dict_content = json.loads(open(file_path, encoding="utf-8").read())
+
+        # storyboard template data
+        self.storyboard_template = {}
 
         flet.app(target=self.UI)
         
     
     def UI (self, page:flet.Page):
         self.page = page
-        page.window_width = 450
         # set page props
+        page.on_keyboard_event = self.keyboard_commands_manager
+        page.window_width = 1090
+        page.window_height = 700
         page.on_resize = self.on_page_resize
         page.vertical_alignment = flet.MainAxisAlignment.CENTER
         page.title = f"Flet_StoryBoard | {self.file_path}"
@@ -36,8 +44,6 @@ class MainPage:
         self.appbar = AppBar(main_class=self)
         self.main_view.controls.append(flet.Row([self.appbar.main_bar], alignment="center"))
 
-        self.main_view.controls.append(flet.Text("gr", color="white"))
-
         # update page as if it was resized
         self.on_page_resize()
         self.page.update()
@@ -54,9 +60,12 @@ class MainPage:
         self.page.update()
 
 
+    def keyboard_commands_manager (self, e):
+        keyboard_commands(event=e)
+
+
     def save_all (self, e=None):
         pass
-
 
     def push_on_stack (self, container:flet.Container):
         def remove ():

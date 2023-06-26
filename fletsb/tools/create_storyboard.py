@@ -9,17 +9,18 @@ def Create_StoryBoard(file_name, template="default", storyboard_suggestions=Fals
             "storyboard_settings": {
                 "template": "default",
                 "storyboard_suggestions": storyboard_suggestions,
-                "allow_scroll": False,
                 "support_bard" : support_bard_ai
             },
             "pages": {
                 "main": {
                     "settings": {
                         "bgcolor": "black",
-                        "suggestions_rules": f"{main_page_suggestions_rules}"
+                        "suggestions_rules": f"{main_page_suggestions_rules}",
+                        "translate_to" : [],
+                        "allow_scroll": False
                     },
                     "widgets": [
-
+                        
                     ]
                 }
             }

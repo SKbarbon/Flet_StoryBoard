@@ -16,7 +16,7 @@ class AppBar (object):
         self.main_row = flet.Row(expand=True)
         self.main_bar.content = self.main_row
 
-        self.title = flet.Text("   Flet_StoryBoard", size=15, weight="bold", color="black", expand=True)
+        self.title = flet.Text("   Flet_StoryBoard", size=16, weight="bold", color="black", expand=True)
         self.main_row.controls.append(self.title)
 
         self.refresh()
@@ -30,7 +30,35 @@ class AppBar (object):
         )
 
     def pad_mode (self):
-        pass
+        # push tabs
+        for item in ["Tutorials", "Lab", "Settings"]:
+            self.main_row.controls.append(flet.TextButton(
+                content=flet.Text(f"{item}", size=12, color="black"),
+                on_click=self.tabs_manager
+            ))
+        
+        # preview btn
+        preview_btn = flet.IconButton(content=flet.Icon(
+            name=flet.icons.PREVIEW_ROUNDED,
+            color="white",
+            size=18
+        ), width=35, height=35, tooltip="Start a preview in a new window")
+        self.main_row.controls.append(flet.Container(content=preview_btn, bgcolor="blue", border_radius=preview_btn.width/4))
+
+        # save btn
+        save_btn = flet.TextButton(content=flet.Text("Save", color="white", size=14))
+        self.main_row.controls.append(flet.Container(
+            content=save_btn, 
+            bgcolor="black", 
+            border_radius=8, 
+            width=100, 
+            height=35,
+            tooltip="Save | ctrl + S"
+        ))
+
+        # padding
+        self.main_row.controls.append(flet.Text("  "))
+
 
     def menu_sheet (self, e=None):
         def close_sheet (e):
@@ -64,7 +92,17 @@ class AppBar (object):
             flet.Row([
                 c
             ], alignment=flet.MainAxisAlignment.CENTER, expand=True)
-        ], alignment=flet.MainAxisAlignment.START))
+        ], alignment=flet.MainAxisAlignment.CENTER))
+    
+    
+    def tabs_manager (self, e:flet.TapEvent):
+        tab_name = str(e.control.content.value)
+        if tab_name.lower() == "settings":
+            pass
+        elif tab_name.lower() == "lab":
+            pass
+        elif tab_name.lower() == "tutorials":
+            pass
 
     def refresh (self):
         self.main_row.controls.clear()

@@ -1,5 +1,6 @@
+from ..pages.settings.settings import SettingsPage
 import flet
-
+import flet_multi_page
 
 
 class AppBar (object):
@@ -16,9 +17,20 @@ class AppBar (object):
         self.main_row = flet.Row(expand=True)
         self.main_bar.content = self.main_row
 
-        self.title = flet.Text("   Flet_StoryBoard", size=16, weight="bold", color="black", expand=True)
-        self.main_row.controls.append(self.title)
+        self.title = flet.Text(
+            "   Flet_StoryBoard", 
+            size=16, 
+            weight="bold", 
+            color="black", 
+            expand=True,
+            tooltip="Flet_StoryBoard logo",
+            semantics_label="Flet StoryBoard logo"
+        )
+        self.main_row.controls.append(flet.Column([
+            self.title
+        ]))
 
+        self.appbar_tabs = ["Tutorials", "Lab", "Settings"]
         self.refresh()
 
     def phone_mode (self):
@@ -31,10 +43,11 @@ class AppBar (object):
 
     def pad_mode (self):
         # push tabs
-        for item in ["Tutorials", "Lab", "Settings"]:
+        for item in self.appbar_tabs:
             self.main_row.controls.append(flet.TextButton(
                 content=flet.Text(f"{item}", size=12, color="black"),
-                on_click=self.tabs_manager
+                on_click=self.tabs_manager,
+                tooltip=f"The {item} tab"
             ))
         
         # preview btn
@@ -71,8 +84,8 @@ class AppBar (object):
         
         c = flet.Container(
             bgcolor="white",
-            width=self.page.window_width - 30,
-            height=self.page.window_height - 50,
+            width=self.page.width - 30,
+            height=self.page.height - 60,
             border_radius=12,
             on_hover=close_sheet,
         )
@@ -88,17 +101,28 @@ class AppBar (object):
         ], alignment=flet.MainAxisAlignment.END)
         cc.controls.append(r)
 
+        cc.controls.append(flet.Text("    Menu", size=20, weight=flet.FontWeight.BOLD, color=flet.colors.BLACK))
+
+        for item in self.appbar_tabs:
+            cc.controls.append(flet.Row([flet.TextButton(
+                content=flet.Text(f"{item}", size=14, color="black", weight=flet.FontWeight.BOLD),
+                on_click=self.tabs_manager,
+                tooltip=f"The {item} tab"
+            )], alignment="center"))
+
         remove_function = self.main_class.push_on_stack(flet.Column(controls=[
             flet.Row([
                 c
             ], alignment=flet.MainAxisAlignment.CENTER, expand=True)
-        ], alignment=flet.MainAxisAlignment.CENTER))
+        ], alignment=flet.MainAxisAlignment.CENTER), with_bg_cover=True)
     
     
     def tabs_manager (self, e:flet.TapEvent):
         tab_name = str(e.control.content.value)
         if tab_name.lower() == "settings":
-            pass
+            sp = SettingsPage(main_class=self.main_class)
+            remove_function = self.main_class.push_on_stack(sp.navigationview.view, with_bg_cover=True)
+            sp.remove_the_bgcover = remove_function
         elif tab_name.lower() == "lab":
             pass
         elif tab_name.lower() == "tutorials":
@@ -108,7 +132,8 @@ class AppBar (object):
         self.main_row.controls.clear()
         self.main_row.controls.append(self.title)
 
-        if self.page.window_width < 500:
+
+        if self.page.width < 500:
             # if phone
             self.phone_mode()
         else:

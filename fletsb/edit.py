@@ -1,5 +1,4 @@
 from .pages.create_new_file import CreateNewFile
-from .pages.main_page import mainPage
 from .editor_page.main import MainPage
 import sys
 import os
@@ -35,4 +34,5 @@ class FileManager:
         CreateNewFile(page=page, manage_class=self)
 
 
-FileManager()
+if __name__ == "__main__":
+    FileManager()

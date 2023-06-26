@@ -1,4 +1,5 @@
 from .appbar import AppBar
+from .preview import Preview
 from ..tools.manage_keyboard_commands import keyboard_commands
 import flet
 import os, time, json
@@ -10,6 +11,10 @@ class MainPage:
         if not os.path.isfile(file_path):
             raise FileExistsError(f"There is no Flet StoryBoard on path '{file_path}' .")
         
+
+        # UI props
+        self.follow_page_bounds = [] # List of flet controls that will follow the page width and height.
+
         # save props
         self.current_page_name = "main"
         self.file_path = file_path
@@ -25,8 +30,6 @@ class MainPage:
         self.page = page
         # set page props
         page.on_keyboard_event = self.keyboard_commands_manager
-        page.window_width = 1090
-        page.window_height = 700
         page.on_resize = self.on_page_resize
         page.vertical_alignment = flet.MainAxisAlignment.CENTER
         page.title = f"Flet_StoryBoard | {self.file_path}"
@@ -40,9 +43,16 @@ class MainPage:
         self.main_view = flet.Column()
         self.push_on_stack(self.main_view)
 
+        # row of mainview
+        self.row_of_mainview = flet.Row(alignment=flet.MainAxisAlignment.CENTER)
+        self.main_view.controls.append(self.row_of_mainview)
+
         # custom page's appbar.
         self.appbar = AppBar(main_class=self)
         self.main_view.controls.append(flet.Row([self.appbar.main_bar], alignment="center"))
+
+        # add the preview place manager
+        self.preview = Preview(main_class=self)
 
         # update page as if it was resized
         self.on_page_resize()
@@ -57,6 +67,8 @@ class MainPage:
         self.appbar.main_bar.width = self.page.width - 25
         self.appbar.refresh()
 
+        for con in self.follow_page_bounds: con.width = self.page.width; con.height = self.page.height
+
         self.page.update()
 
 
@@ -67,12 +79,13 @@ class MainPage:
     def save_all (self, e=None):
         pass
 
-    def push_on_stack (self, container:flet.Container):
+    def push_on_stack (self, container:flet.Container, with_bg_cover:bool=False):
         def remove ():
-            animated_control.content = flet.Text("")
-            animated_control.update()
-            time.sleep(0.5)
             self.main_stack.controls.remove(animated_control)
+            if with_bg_cover:
+                self.main_stack.controls.remove(cover)
+                self.follow_page_bounds.remove(cover)
+            
             self.main_stack.update()
         
         animated_control = flet.AnimatedSwitcher(
@@ -83,6 +96,15 @@ class MainPage:
             switch_in_curve=flet.AnimationCurve.BOUNCE_IN_OUT,
             switch_out_curve=flet.AnimationCurve.BOUNCE_IN_OUT
         )
+        if with_bg_cover:
+            cover = flet.Container(
+                bgcolor="black", 
+                width=self.page.width, 
+                height=self.page.height,
+                opacity=0.8
+            )
+            self.main_stack.controls.append(cover)
+            self.follow_page_bounds.append(cover)
         self.main_stack.controls.append(animated_control)
         self.main_stack.update()
 

@@ -16,7 +16,7 @@ class NavigationView (object):
             self.title.value = self.title.value.replace("    ", "")
             self.view.controls.append(
                 flet.Row([
-                    flet.IconButton(icon=flet.icons.CLOSE, on_click=on_close),
+                    flet.IconButton(content=flet.Icon(name=flet.icons.CLOSE, color=flet.colors.WHITE), on_click=on_close),
                     self.title
                 ])
             )

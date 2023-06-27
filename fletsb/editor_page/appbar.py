@@ -23,7 +23,6 @@ class AppBar (object):
             weight="bold", 
             color="black", 
             expand=True,
-            tooltip="Flet_StoryBoard logo",
             semantics_label="Flet StoryBoard logo"
         )
         self.main_row.controls.append(flet.Column([

@@ -1,0 +1,2 @@
+
+from .check_platform_name import is_phone_platform

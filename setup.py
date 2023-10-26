@@ -11,7 +11,7 @@ setup(
     long_description=long_des,
     long_description_content_type='text/markdown',
     url='https://github.com/SKbarbon/Flet-StoryBoard',
-    install_requires=["flet==0.5.2", "requests", "bardapi", "flet_multi_page"],
+    install_requires=["flet", "requests", "bardapi"],
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

@@ -1,0 +1,66 @@
+{
+    "settings": {
+        "last_id": 4
+    },
+    "pages": {
+        "main": {
+            "settings": {
+                "center_align": true,
+                "scroll": false,
+                "auto_scroll": false
+            },
+            "widgets": [
+                {
+                    "id": 0,
+                    "widget_name": "Title",
+                    "widget_identifier_name": "",
+                    "properties": {
+                        "text": "Hi",
+                        "color": "#8ce1fa",
+                        "size": 24
+                    },
+                    "content": null,
+                    "controls": null
+                },
+                {
+                    "id": 1,
+                    "widget_name": "Title",
+                    "widget_identifier_name": "",
+                    "properties": {
+                        "text": "Steve Jobs",
+                        "color": "#fa8c8c",
+                        "size": 24
+                    },
+                    "content": null,
+                    "controls": null
+                },
+                {
+                    "id": 2,
+                    "widget_name": "Paragraph",
+                    "widget_identifier_name": "",
+                    "properties": {
+                        "text": "Steve Jobs was a visionary entrepreneur who co-founded Apple Inc. and revolutionized the technology industry with his innovative products.",
+                        "color": "#CCCCCC",
+                        "size": 14,
+                        "text_align": "left"
+                    },
+                    "content": null,
+                    "controls": null
+                },
+                {
+                    "id": 3,
+                    "widget_name": "Paragraph",
+                    "widget_identifier_name": "",
+                    "properties": {
+                        "text": "His relentless pursuit of perfection and ability to blend technology with artistry led to the creation of iconic devices like the iPhone, iPad, and MacBook.",
+                        "color": "#CCCCCC",
+                        "size": 14,
+                        "text_align": "left"
+                    },
+                    "content": null,
+                    "controls": null
+                }
+            ]
+        }
+    }
+}

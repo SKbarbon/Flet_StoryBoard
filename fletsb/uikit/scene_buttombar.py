@@ -1,4 +1,4 @@
-import flet
+import flet, traceback
 
 
 class SceneButtonbarEditor (flet.Row):
@@ -11,8 +11,8 @@ class SceneButtonbarEditor (flet.Row):
             hint_text="Ask AI to add..",
             border="none",
             text_size=15,
-            on_submit=lambda e: self.process_action(e, on_ask_ai),
-            text_style=flet.TextStyle(weight=flet.FontWeight.W_200)
+            on_submit=lambda e: self.process_action(e, on_ask_ai, e.control.value),
+            text_style=flet.TextStyle(weight=flet.FontWeight.W_300)
         )
         ai_chat_row = flet.Row([
             flet.Container(
@@ -39,13 +39,19 @@ class SceneButtonbarEditor (flet.Row):
         self.controls.append(flet.Text("    ", height=15))
     
 
-    def process_action (self, e, action):
+    def process_action (self, e, action, data=None):
         if action == None: return
         ctrl : flet.Control = e.control
 
         ctrl.disabled = True
         ctrl.update()
-        action()
+        try:
+            if data != None:
+                action(data)
+            else:
+                action()
+        except:
+            traceback.print_exc()
         ctrl.disabled = False
         ctrl.update()
     

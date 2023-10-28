@@ -8,6 +8,7 @@ class Widget:
         self.storyboard_class = storyboard_class
 
         self.data = {
+            "id": -1,
             "widget_name" : "",
             "widget_identifier_name" : "",
             "properties" : {},
@@ -43,6 +44,9 @@ class Widget:
 
     def update_subs (self):
         """Update the `self.data` (The dict of the widget) and update it with new sub controls and content updates"""
+        # Fix broken things
+        self.fix_data_dict()
+
         if self.data['controls'] != None:
             self.generate_sub_widgets()
             for c in self.controls:
@@ -72,6 +76,27 @@ class Widget:
         
         if self.flet_object.page != None:
             self.flet_object.update()
+    
+
+    def fix_data_dict (self):
+        if "widget_identifier_name" not in self.data:
+            self.data['widget_identifier_name'] = ""
+        
+        if "properties" not in self.data:
+            self.data['properties'] = {}
+        
+
+        for i in self.properties_data():
+            if i not in self.data['properties']:
+                self.data['properties'][i] = self.properties_data()[i]['default_value']
+        
+
+        if "content" not in self.data:
+            self.data['content'] = None
+        
+
+        if "controls" not in self.data:
+            self.data['controls'] = None
 
 
     def properties_data(self):

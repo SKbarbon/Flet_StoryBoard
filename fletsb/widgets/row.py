@@ -7,14 +7,22 @@ class Row (Widget):
     def __init__ (self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.flet_object = flet.Row()
-    
+        self.flet_empty_placeholder_object = flet.Text("Empty Row")
 
+        self.data['widget_name'] = "Row"
+    
         self.data['controls'] = []
         self.controls = []
     
 
     def update_flet_object(self):
         super().update_flet_object()
+        if self.data['controls'] == []:
+            self.flet_object.controls.append(self.flet_empty_placeholder_object)
+        else:
+            if self.flet_empty_placeholder_object in self.flet_object.controls:
+                self.flet_object.controls.remove(self.flet_empty_placeholder_object)
+
         properties = self.data['properties']
 
         alignment = properties['alignment']

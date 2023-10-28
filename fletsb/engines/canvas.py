@@ -24,11 +24,26 @@ class Canvas:
 
         for c in self.main_class.storyboard_content['pages'][f"{self.main_class.current_page_name}"]['widgets']:
             w = self.widget_gen(widget_data=c)
-            self.main_col.controls.append(w.flet_object)
+            self.main_col.controls.append(self.control_wraping(w))
             self.main_class.storyboard_controls.append(w)
+
+
+        self.update_page_properties()
         
         if self.main_col.page != None:
             self.main_col.update()
+    
+    
+    def update_page_properties (self):
+        page_settings = self.main_class.storyboard_content['pages'][self.main_class.current_page_name]['settings']
+
+        if page_settings['center_align']:
+            self.main_col.horizontal_alignment = flet.CrossAxisAlignment.CENTER
+            self.main_col.alignment = flet.MainAxisAlignment.CENTER
+    
+
+    def control_wraping (self, widget_class):
+        return widget_class.flet_object
 
 
     def widget_gen (self, widget_data:dict):
@@ -38,8 +53,6 @@ class Canvas:
         wid_cls_nm = widget_data['widget_name']
 
         wid_cls = tools.get_widget_class_by_name(widget_name=wid_cls_nm)
-        self.main_class.storyboard_controls.append(wid_cls)
-
         wid_cls = wid_cls(
             storyboard_class=self.main_class.storyboard_class
         )

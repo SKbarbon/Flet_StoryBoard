@@ -1,4 +1,4 @@
-
+from fletsb import tools
 
 
 
@@ -10,6 +10,7 @@ class StoryBoard:
         self.__main_class = main_class
 
         # storyboard stored data
+        self._last_id = int(main_class.storyboard_content['settings']['last_id'])
         self.defined_functions = {}
     
 
@@ -35,3 +36,8 @@ class StoryBoard:
     def get_property_value (self, widget_identifier_name:str, property_name:str):
         if widget_identifier_name == "":
             raise Exception("You must give a real widget_identifier_name")
+    
+
+    @property
+    def main_cls (self):
+        return self.__main_class

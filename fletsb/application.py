@@ -1,14 +1,15 @@
 from fletsb import uikit
 from fletsb import utils
-import flet, time
+import flet, os
 
 from fletsb.pages import Editor
 
 
 class Application:
-    def __init__(self, storyboard_file:str=None) -> None:
+    def __init__(self, storyboard_file_path:str=None) -> None:
 
         # Experience data
+        self.storyboard_file_path = storyboard_file_path
         self.user_on_edit_state = False # Apply when a project is opened for being edited.
 
         # start flet app cycle.
@@ -67,19 +68,22 @@ class Application:
         page.update()
         page.window_center()
 
-        # testing scene
-        e = Editor("Proj Name", page=self.page, application_class=self)
-        self.editor_scene = e
-        self.show_a_scene(scene=e)
+        # Choose what is the startup scene.
+        if self.storyboard_file_path == None:
+            self.show_a_scene(flet.Text("No scene!"))
+        else:
+            project_name = os.path.basename(self.storyboard_file_path.replace(".fletsb", ""))
+            e = Editor(project_name=project_name, project_path=self.storyboard_file_path, page=self.page, application_class=self)
+            self.editor_scene = e
+            self.show_a_scene(scene=e)
 
         self.page.update()
-        e.testing_content()
     
 
     def show_a_scene (self, scene):
         safe_area = flet.SafeArea(content=scene)
 
-        self.main_scene_holder.content = safe_area
+        self.main_scene_holder.content = scene
         self.main_scene_holder.update()
     
 

@@ -20,11 +20,17 @@ class Paragraph (Widget):
         color = properties['color']
         size = properties['size']
         text_align = properties['text_align']
+        width = properties['width']
+        height = properties['height']
+        expand = properties['expand']
 
         self.flet_object.value = str(text)
         self.flet_object.color = str(color)
         self.flet_object.size = int(size)
         self.flet_object.text_align = str(text_align)
+        self.flet_object.width = int(width)
+        self.flet_object.height = int(height)
+        self.flet_object.expand = bool(expand)
 
         if self.flet_object.page != None:
             self.flet_object.update()
@@ -35,5 +41,8 @@ class Paragraph (Widget):
             "text" : {"type":"str", "default_value":"Hello, fletsb!\nThis is a paragraph!!"},
             "color" : {"type": "color", "default_value":"white"},
             "size": {"type":"int", "default_value":15},
-            "text_align": {"type":"list", "options":["left", "center", "right"], "default_value": "left"}
+            "text_align": {"type":"list", "options":["left", "center", "right"], "default_value": "left"},
+            "width": {"type": "int", "default_value": 150},
+            "height": {"type": "int", "default_value": 100},
+            "expand": {"type": "bool", "default_value": False}
         }

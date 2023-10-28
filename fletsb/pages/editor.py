@@ -1,6 +1,7 @@
 from fletsb import engines
 from fletsb import StoryBoard
 from fletsb.uikit import Scene
+from fletsb import pages
 from fletsb import uikit
 import flet, json, threading
 
@@ -15,6 +16,16 @@ class Editor (Scene):
             topbar=uikit.SceneTopbar(
                 title=f"{project_name}",
                 actions=[
+                    flet.TextButton(
+                        content=flet.Text("Community", color="white"), 
+                        tooltip="Open Community page",
+                        on_click=lambda e: self.open_tab_on_sheet("Community")
+                    ),
+                    flet.TextButton(
+                        content=flet.Text("Settings", color="white"), 
+                        tooltip="Open Settings page",
+                        on_click=lambda e: self.open_tab_on_sheet("Settings")
+                    ),
                     flet.TextButton(content=flet.Container(
                         content=flet.Row([
                             flet.Text("Exit", color="black", weight=flet.FontWeight.W_300)
@@ -90,6 +101,16 @@ class Editor (Scene):
         self.right_section.content = content
         if self.right_section.page != None:
             self.right_section.update()
+    
+
+    def open_tab_on_sheet (self, tab_name:str):
+        def close_sheet(e=None): self.application_class.show_the_sheet = False
+        if tab_name == "Settings":
+            tb = pages.Settings(close_function=close_sheet).view
+        else:
+            tb = flet.Text(tab_name)
+        self.application_class.sheet_container.content = tb
+        self.application_class.show_the_sheet = True
     
 
     def save_storyboard_content(self):

@@ -8,7 +8,7 @@ class StringField (flet.TextField):
         self.on_change_function = on_change_function
         self.field_name = field_name
 
-        self.multiline = True
+        # self.multiline = True
         self.text_size = 20
         self.height = 60
         self.width = 180

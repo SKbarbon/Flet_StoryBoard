@@ -6,7 +6,8 @@ def get_all_widgets ():
         "Title": "TITLE_ROUNDED",
         "Row": "VIEW_COLUMN_ROUNDED",
         "Column": "TABLE_ROWS_ROUNDED",
-        "Paragraph": "SHORT_TEXT_ROUNDED"
+        "Paragraph": "SHORT_TEXT_ROUNDED",
+        "Image": "IMAGE_OUTLINED"
     }
 
 
@@ -15,7 +16,8 @@ def get_widget_class_by_name (widget_name:str) -> widgets.Widget:
         "Title": widgets.Title,
         "Row": widgets.Row,
         "Column": widgets.Column,
-        "Paragraph": widgets.Paragraph
+        "Paragraph": widgets.Paragraph,
+        "Image": widgets.Image
     }
 
 

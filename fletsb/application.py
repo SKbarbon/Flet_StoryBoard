@@ -11,9 +11,10 @@ class Application:
         # Experience data
         self.storyboard_file_path = storyboard_file_path
         self.user_on_edit_state = False # Apply when a project is opened for being edited.
+        self.bgcolor_opacity_number = 0.9
 
         # start flet app cycle.
-        flet.app(target=self.app)
+        flet.app(target=self.app, assets_dir="assets/")
 
     def app (self, page:flet.Page):
         self.page : flet.Page = page
@@ -35,6 +36,7 @@ class Application:
         bg_container = flet.Container(
             bgcolor="#151515"
         )
+        self.bg_container = bg_container
         self.main_stack.controls.append(bg_container)
 
 
@@ -47,7 +49,7 @@ class Application:
         self.main_stack.controls.append(self.main_scene_holder)
 
         self.sheet_container = flet.Container(
-            bgcolor="white",
+            bgcolor="black",
             border_radius=18,
             visible=False
         )
@@ -62,11 +64,12 @@ class Application:
             page.window_min_height = 550
             page.window_min_width = 700
             bg_container.border_radius = 18
-            bg_container.opacity = 0.9
+            bg_container.opacity = self.bgcolor_opacity_number
 
         
         page.update()
         page.window_center()
+        self.on_page_resize(None)
 
         # Choose what is the startup scene.
         if self.storyboard_file_path == None:
@@ -117,12 +120,15 @@ class Application:
     def show_the_sheet(self, value:bool):
         if value == True:
             self.sheet_container.visible = True
-            self.main_scene_holder.opacity = 0.5
+            self.main_scene_holder.opacity = 0.3
+            self.bg_container.opacity = 0.5
             self.main_scene_holder.disabled = True
         else:
             self.sheet_container.visible = False
             self.main_scene_holder.opacity = 1.0
+            self.bg_container.opacity = self.bgcolor_opacity_number
             self.main_scene_holder.disabled = False
         
+        self.bg_container.update()
         self.main_scene_holder.update()
         self.sheet_container.update()

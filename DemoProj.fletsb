@@ -1,6 +1,6 @@
 {
     "settings": {
-        "last_id": 4
+        "last_id": 3
     },
     "pages": {
         "main": {
@@ -12,50 +12,40 @@
             "widgets": [
                 {
                     "id": 0,
-                    "widget_name": "Title",
+                    "widget_name": "Image",
                     "widget_identifier_name": "",
                     "properties": {
-                        "text": "Hi",
-                        "color": "#8ce1fa",
-                        "size": 24
+                        "src": "https://picsum.photos/200/300",
+                        "src_base64": "",
+                        "width": "219",
+                        "height": "257",
+                        "expand": false
                     },
                     "content": null,
                     "controls": null
                 },
                 {
                     "id": 1,
-                    "widget_name": "Title",
+                    "widget_name": "Image",
                     "widget_identifier_name": "",
                     "properties": {
-                        "text": "Steve Jobs",
-                        "color": "#fa8c8c",
-                        "size": 24
+                        "src": "https://picsum.photos/200",
+                        "src_base64": "",
+                        "width": 200,
+                        "height": "220",
+                        "expand": false
                     },
                     "content": null,
                     "controls": null
                 },
                 {
                     "id": 2,
-                    "widget_name": "Paragraph",
+                    "widget_name": "Title",
                     "widget_identifier_name": "",
                     "properties": {
-                        "text": "Steve Jobs was a visionary entrepreneur who co-founded Apple Inc. and revolutionized the technology industry with his innovative products.",
-                        "color": "#CCCCCC",
-                        "size": 14,
-                        "text_align": "left"
-                    },
-                    "content": null,
-                    "controls": null
-                },
-                {
-                    "id": 3,
-                    "widget_name": "Paragraph",
-                    "widget_identifier_name": "",
-                    "properties": {
-                        "text": "His relentless pursuit of perfection and ability to blend technology with artistry led to the creation of iconic devices like the iPhone, iPad, and MacBook.",
-                        "color": "#CCCCCC",
-                        "size": 14,
-                        "text_align": "left"
+                        "text": "New one",
+                        "color": "white",
+                        "size": 24
                     },
                     "content": null,
                     "controls": null

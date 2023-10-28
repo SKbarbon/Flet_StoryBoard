@@ -13,7 +13,8 @@ Before you know how your responses will be, you must know these supported widget
 - 'Row' widget. Properties: alignment:str(options: 'left', 'center' and 'end').
 - 'Column' widget. Properties: alignment:str(options: 'left', 'center' and 'end').
 - 'Paragraph' widget. Properties: text:str, size:int, color:str, text_align:str(options: 'left', 'center' and 'right').
-All properties are required.
+- 'Image' widget. Properties: src:str, str_base64:str, width:int, height:int, expand:bool.
+
 
 Your responses must be in json only without any additional context, because you are talking with software not with a real human.
 

@@ -1,6 +1,9 @@
 {
     "settings": {
-        "last_id": 3
+        "last_id": 5,
+        "canvas": {
+            "freeform": false
+        }
     },
     "pages": {
         "main": {
@@ -12,40 +15,67 @@
             "widgets": [
                 {
                     "id": 0,
-                    "widget_name": "Image",
+                    "widget_name": "Title",
                     "widget_identifier_name": "",
                     "properties": {
-                        "src": "https://picsum.photos/200/300",
-                        "src_base64": "",
-                        "width": "219",
-                        "height": "257",
-                        "expand": false
+                        "text": "Holaii",
+                        "color": "#fa8c8c",
+                        "size": "51"
                     },
                     "content": null,
                     "controls": null
                 },
                 {
                     "id": 1,
-                    "widget_name": "Image",
+                    "widget_name": "Title",
                     "widget_identifier_name": "",
                     "properties": {
-                        "src": "https://picsum.photos/200",
-                        "src_base64": "",
-                        "width": 200,
-                        "height": "220",
-                        "expand": false
+                        "text": "Hmmm, are you ok?",
+                        "color": "red",
+                        "size": 24
                     },
                     "content": null,
                     "controls": null
                 },
                 {
                     "id": 2,
+                    "widget_name": "Row",
+                    "widget_identifier_name": "",
+                    "properties": {
+                        "alignment": "center",
+                        "spacing": "15"
+                    },
+                    "content": null,
+                    "controls": []
+                },
+                {
+                    "id": 3,
+                    "widget_name": "Row",
+                    "widget_identifier_name": "",
+                    "properties": {
+                        "alignment": "center",
+                        "spacing": 5
+                    },
+                    "content": null,
+                    "controls": []
+                }
+            ]
+        },
+        "second": {
+            "settings": {
+                "center_align": true,
+                "scroll": false,
+                "auto_scroll": false
+            },
+            "widgets": [
+                {
+                    "id": 4,
                     "widget_name": "Title",
                     "widget_identifier_name": "",
                     "properties": {
-                        "text": "New one",
-                        "color": "white",
-                        "size": 24
+                        "text": "Second",
+                        "color": "#8ce1fa",
+                        "size": "26"
                     },
                     "content": null,
                     "controls": null

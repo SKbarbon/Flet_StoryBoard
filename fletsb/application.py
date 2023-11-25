@@ -1,6 +1,6 @@
 from fletsb import uikit
 from fletsb import utils
-import flet, os
+import flet, os, sys
 
 from fletsb.pages import Editor
 
@@ -11,10 +11,17 @@ class Application:
         # Experience data
         self.storyboard_file_path = storyboard_file_path
         self.user_on_edit_state = False # Apply when a project is opened for being edited.
+        self.sheet_is_fullscreen = False
         self.bgcolor_opacity_number = 0.9
+        self.current_presented_scene = None
 
         # start flet app cycle.
-        flet.app(target=self.app, assets_dir="assets/")
+
+        if sys.platform == "linux" or sys.platform == "linux2":
+            flet.app(target=self.app, assets_dir="assets/", view=flet.AppView.WEB_BROWSER)
+        else:
+            # flet.app(target=self.app, assets_dir="assets/", view=flet.AppView.WEB_BROWSER)
+            flet.app(target=self.app, assets_dir="assets/")
 
     def app (self, page:flet.Page):
         self.page : flet.Page = page
@@ -51,7 +58,8 @@ class Application:
         self.sheet_container = flet.Container(
             bgcolor="black",
             border_radius=18,
-            visible=False
+            visible=False,
+            padding=15
         )
         self.main_stack.controls.append(flet.Column([
             flet.Row([self.sheet_container], alignment=flet.MainAxisAlignment.CENTER)
@@ -60,7 +68,13 @@ class Application:
 
         # Set specific page appearance for desktop
         if utils.is_phone_platform() == False and page.web == False:
-            page.window_frameless = True
+            if "darwin" in str(sys.platform).lower():
+                # if on macOS
+                page.window_frameless = True
+            else:
+                # if Windows
+                page.window_title_bar_buttons_hidden = True
+                page.window_title_bar_hidden = True
             page.window_min_height = 550
             page.window_min_width = 700
             bg_container.border_radius = 18
@@ -84,21 +98,27 @@ class Application:
     
 
     def show_a_scene (self, scene):
-        safe_area = flet.SafeArea(content=scene)
+        self.current_presented_scene = scene
 
         self.main_scene_holder.content = scene
         self.main_scene_holder.update()
     
 
-    def on_page_resize (self, e):
+    def on_page_resize (self, e=None):
         # print(e.__dict__)
         if self.page.width > 450:
             #! if big screen size
             self.sheet_container.width = self.page.width / 1.5
+            self.sheet_container.height = self.page.height - 150
         else:
             self.sheet_container.width = self.page.width - 50
+            self.sheet_container.height = self.page.height - 150
         
-        self.sheet_container.height = self.page.height - 150
+        #! if sheet must be full screen:
+        if self.sheet_is_fullscreen:
+            self.sheet_container.width = self.page.width
+            self.sheet_container.height = self.page.height
+
 
         if hasattr(self, 'editor_scene') and self.user_on_edit_state:
             self.editor_scene.editor_canvas_engine.main_col.width = self.page.width / 1.5
@@ -111,6 +131,12 @@ class Application:
     def on_keyboard_shortcut (self, e):
         if str(e.key).lower() == "escape":
             if self.sheet_container.visible == True: self.show_the_sheet = False
+        
+
+        # Pass event to current scene
+        if self.current_presented_scene != None:
+            if hasattr(self.current_presented_scene, "on_keyboard_event"):
+                self.current_presented_scene.on_keyboard_event(e)
     
 
     @property
@@ -128,6 +154,9 @@ class Application:
             self.main_scene_holder.opacity = 1.0
             self.bg_container.opacity = self.bgcolor_opacity_number
             self.main_scene_holder.disabled = False
+            self.sheet_is_fullscreen = False
+        
+        self.on_page_resize()
         
         self.bg_container.update()
         self.main_scene_holder.update()

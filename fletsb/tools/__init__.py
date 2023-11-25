@@ -2,3 +2,4 @@
 
 from .get_widget_class_by_name import get_widget_class_by_name, get_all_widgets
 from .search_for_widget import search_for_widget_id
+from .delete_widget import delete_widget_by_id

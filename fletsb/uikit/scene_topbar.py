@@ -1,6 +1,5 @@
 import flet
 
-
 class SceneTopbar (flet.Row):
     """A topbar that being used on a scene object."""
     def __init__ (self, title:str="", actions=None):

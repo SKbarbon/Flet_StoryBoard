@@ -12,7 +12,15 @@ class Settings ():
         for nav in ["Page", "Editor"]:
             self.view.add_new_navigation(navigation_name=nav, navigation_content=flet.Text(f"{nav}"))
 
-        self.view.open_navigation("Page")   
+        self.view.open_navigation("Page")
+    
+
+    def page_settings (self):
+        return flet.Text("Page")
+
+    def editor_settings (self):
+        return flet.Text("Editor")
+
 
     def close_settings (self, e):
         self.close_function()

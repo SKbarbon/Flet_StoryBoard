@@ -1,6 +1,8 @@
+from fletsb.tools import delete_widget_by_id
+from fletsb.uikit.banner_alert import error_banner_alert
 from fletsb.uikit import fields
 from fletsb import tools
-import flet
+import flet, traceback
 
 
 
@@ -78,6 +80,12 @@ class EditingWidget(flet.Column):
                     options=options
                 )
                 self.controls.append(flet.Row([fld], alignment=flet.MainAxisAlignment.CENTER))
+            
+
+        # The delete widget button
+        self.controls.append(flet.Row([
+            flet.TextButton(content=flet.Text("Delete", color="red"), tooltip="Delete the widget", on_click=self.delete_widget)
+        ], alignment=flet.MainAxisAlignment.CENTER))
     
 
     def on_prop_changed (self, prop_name:str, prop_value):
@@ -87,3 +95,23 @@ class EditingWidget(flet.Column):
         self.widget_class.update_flet_object()
 
         self.storyboard_class.main_cls.save_storyboard_content()
+    
+
+    def delete_widget (self, e=None):
+        try:
+            delete_widget_by_id(storyboard_class=self.storyboard_class, widget_id=self.widget_id)
+        except:
+            traceback.print_exc()
+            self.page.banner = error_banner_alert(
+                title="Widget cannot be deleted 😕!",
+                text="""There was an error while trying to delete the widget from the file.
+                """
+            )
+            self.page.banner.open = True
+            self.page.overlay.clear()
+            warning_audio_src = "https://cdn.pixabay.com/download/audio/2022/11/20/audio_3371f818f5.mp3?filename=error-2-126514.mp3"
+            self.page.overlay.append(flet.Audio(warning_audio_src, autoplay=True, volume=0.5))
+            self.page.update()
+
+            self.storyboard_class.main_cls.editor_canvas_engine.update_canvas()
+            self.storyboard_class.main_cls.save_storyboard_content()

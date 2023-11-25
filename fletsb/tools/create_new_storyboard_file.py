@@ -10,7 +10,10 @@ class CreateStoryBoardFile:
     def file_content (self) -> dict:
         return {
             "settings" : {
-                "last_id": 0
+                "last_id": 0,
+                "canvas": {
+                    "freeform": False
+                }
             },
             "pages" : {
                 "main" : {

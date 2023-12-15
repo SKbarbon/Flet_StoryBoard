@@ -11,7 +11,7 @@ setup(
     long_description=long_des,
     long_description_content_type='text/markdown',
     url='https://github.com/SKbarbon/Flet-StoryBoard',
-    install_requires=["flet", "flet_translator", "freegpt"],
+    install_requires=["flet==0.11.0", "flet_translator", "freegpt", "requests", "deep-translator"],
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

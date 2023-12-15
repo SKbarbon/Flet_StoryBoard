@@ -1,6 +1,6 @@
 {
     "settings": {
-        "last_id": 5,
+        "last_id": 85,
         "canvas": {
             "freeform": false
         }
@@ -9,76 +9,158 @@
         "main": {
             "settings": {
                 "center_align": true,
-                "scroll": false,
-                "auto_scroll": false
+                "scroll": true,
+                "auto_scroll": false,
+                "bgcolor": "black"
             },
             "widgets": [
                 {
-                    "id": 0,
+                    "id": 12,
                     "widget_name": "Title",
                     "widget_identifier_name": "",
                     "properties": {
-                        "text": "Holaii",
-                        "color": "#fa8c8c",
-                        "size": "51"
+                        "text": "iPad Pro",
+                        "color": "white",
+                        "size": "32"
                     },
                     "content": null,
-                    "controls": null
+                    "controls": null,
+                    "delete_me": false
                 },
                 {
-                    "id": 1,
-                    "widget_name": "Title",
+                    "id": 14,
+                    "widget_name": "Paragraph",
                     "widget_identifier_name": "",
                     "properties": {
-                        "text": "Hmmm, are you ok?",
-                        "color": "red",
-                        "size": 24
+                        "text": "Supercharged by",
+                        "color": "white",
+                        "size": "20",
+                        "text_align": "center",
+                        "width": "183",
+                        "height": "29",
+                        "expand": false
                     },
                     "content": null,
-                    "controls": null
+                    "controls": null,
+                    "delete_me": false
                 },
                 {
-                    "id": 2,
-                    "widget_name": "Row",
+                    "id": 15,
+                    "widget_name": "Image",
                     "widget_identifier_name": "",
                     "properties": {
-                        "alignment": "center",
-                        "spacing": "15"
+                        "src": "https://www.apple.com/v/ipad-pro/al/images/overview/hero/m2_logo__90ungfqgnsiu_large_2x.png",
+                        "src_base64": "",
+                        "width": "75",
+                        "height": "75",
+                        "expand": false
                     },
                     "content": null,
-                    "controls": []
+                    "controls": null,
+                    "delete_me": false
                 },
                 {
-                    "id": 3,
-                    "widget_name": "Row",
+                    "id": 16,
+                    "widget_name": "Image",
                     "widget_identifier_name": "",
                     "properties": {
-                        "alignment": "center",
-                        "spacing": 5
+                        "src": "https://www.apple.com/v/ipad-pro/al/images/overview/hero/hero__gb2msr725aa2_large_2x.jpg",
+                        "src_base64": "",
+                        "width": "500",
+                        "height": "400",
+                        "expand": false
                     },
                     "content": null,
-                    "controls": []
+                    "controls": null,
+                    "delete_me": false
+                },
+                {
+                    "id": 17,
+                    "widget_name": "Paragraph",
+                    "widget_identifier_name": "",
+                    "properties": {
+                        "text": "Astonishing performance. Incredibly advanced displays. Superfast wireless connectivity. Next-level Apple Pencil capabilities. Powerful new features in iPadOS. The ultimate iPad experience.",
+                        "color": "white",
+                        "size": "15",
+                        "text_align": "left",
+                        "width": "600",
+                        "height": "67",
+                        "expand": false
+                    },
+                    "content": null,
+                    "controls": null,
+                    "delete_me": false
+                },
+                {
+                    "id": 84,
+                    "widget_name": "RouteButton",
+                    "widget_identifier_name": "",
+                    "properties": {
+                        "text": "Go to about us!",
+                        "target_page": "about us",
+                        "color": "white",
+                        "bgcolor": "blue",
+                        "autofocus": false,
+                        "fixed_size": false,
+                        "width": 100,
+                        "height": 40
+                    },
+                    "events": [
+                        "on_navigate"
+                    ],
+                    "content": null,
+                    "controls": null,
+                    "delete_me": false
                 }
             ]
         },
-        "second": {
+        "about us": {
             "settings": {
                 "center_align": true,
                 "scroll": false,
-                "auto_scroll": false
+                "auto_scroll": false,
+                "bgcolor": "black"
             },
             "widgets": [
                 {
-                    "id": 4,
+                    "id": 82,
                     "widget_name": "Title",
                     "widget_identifier_name": "",
                     "properties": {
-                        "text": "Second",
-                        "color": "#8ce1fa",
-                        "size": "26"
+                        "text": "We are great.",
+                        "color": "white",
+                        "size": 18
                     },
                     "content": null,
-                    "controls": null
+                    "controls": null,
+                    "delete_me": false
+                }
+            ]
+        },
+        "buttons": {
+            "settings": {
+                "center_align": true,
+                "scroll": false,
+                "auto_scroll": false,
+                "bgcolor": "black"
+            },
+            "widgets": [
+                {
+                    "id": 85,
+                    "widget_name": "TextButton",
+                    "widget_identifier_name": "",
+                    "properties": {
+                        "text": "Hello, fletsb!",
+                        "tooltip": "This is a clickable button!"
+                    },
+                    "events": {
+                        "on_click": "",
+                        "on_hover": "",
+                        "on_long_press": ""
+                    },
+                    "content": null,
+                    "controls": null,
+                    "delete_me": false
                 }
             ]
         }

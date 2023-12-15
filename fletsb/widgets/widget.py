@@ -12,14 +12,17 @@ class Widget:
             "widget_name" : "",
             "widget_identifier_name" : "",
             "properties" : {},
+            "events": {},
             "content" : None,
-            "controls" : None
+            "controls" : None,
+            "delete_me": False
         }
 
 
         # subs
         self.controls = []
         self.content = None
+        self.availble_events = []
     
 
 
@@ -64,6 +67,16 @@ class Widget:
     def generate_sub_widgets (self):
         self.controls.clear()
         self.flet_object.controls.clear()
+
+        # Delete the must delete widgets
+        for i in list(self.data['controls']):
+            try:
+                if i['delete_me']:
+                    self.data['controls'].remove(i)
+            except:
+                self.fix_data_dict()
+        
+        # Start generate
         for c in self.data['controls']:
             wc = tools.get_widget_class_by_name(widget_name=c['widget_name'])
             wc = wc(storyboard_class=self.storyboard_class)
@@ -97,6 +110,9 @@ class Widget:
 
         if "controls" not in self.data:
             self.data['controls'] = None
+        
+        if "delete_me" not in self.data:
+            self.data['delete_me'] = False
 
 
     def properties_data(self):

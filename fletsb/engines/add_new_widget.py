@@ -4,10 +4,12 @@ import flet
 
 
 class AddNewWidget (flet.Column):
-    def __init__(self, editor_class, add_to) -> None:
+    """The `add_to` prop must be string named 'page' or a fletsb widget class."""
+    def __init__(self, editor_class, add_to, on_done_adding=None) -> None:
         super().__init__()
         self.editor_class = editor_class
         self.add_to = add_to
+        self.on_done_adding = on_done_adding
         
         self.all_widgets = tools.get_all_widgets()
 
@@ -32,17 +34,23 @@ class AddNewWidget (flet.Column):
             wdgt_cls.data['properties'][wp] = wdgt_cls.properties_data()[wp]['default_value']
 
         # IDs management
-        object_id = self.editor_class.storyboard_class._last_id
-        self.editor_class.storyboard_class._last_id = self.editor_class.storyboard_class._last_id + 1
-        self.editor_class.storyboard_content['settings']['last_id'] = self.editor_class.storyboard_content['settings']['last_id'] + 1
+        object_id = self.editor_class.storyboard_class.get_new_widget_id()
         wdgt_cls.data['id'] = object_id
 
         # Start adding the widget
         if self.add_to == "page":
             self.editor_class.storyboard_content['pages'][self.editor_class.current_page_name]['widgets'].append(wdgt_cls.data)
             self.editor_class.editor_canvas_engine.update_canvas()
+        else:
+            widget_class = self.add_to
+            widget_class.data['controls'].append(wdgt_cls.data)
+            widget_class.update_subs()
+            widget_class.update_flet_object()
         
         self.editor_class.save_storyboard_content()
+        
+        if self.on_done_adding != None:
+            self.on_done_adding()
     
 
     def widget_label_frame (self, wid_name:str, wid_icon:str):

@@ -4,8 +4,8 @@ import flet
 
 
 class Image (Widget):
-    def __init__(self, storyboard_class) -> None:
-        super().__init__(storyboard_class)
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
 
         self.flet_object = flet.Image("")
 

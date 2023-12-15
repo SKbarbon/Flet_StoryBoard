@@ -20,7 +20,8 @@ class CreateStoryBoardFile:
                     "settings": {
                         "center_align": True,
                         "scroll": False,
-                        "auto_scroll": False
+                        "auto_scroll": False,
+                        "bgcolor": None
                     },
                     "widgets": [
 

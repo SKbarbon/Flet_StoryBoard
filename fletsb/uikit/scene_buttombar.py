@@ -1,4 +1,5 @@
-import flet, traceback
+from fletsb.uikit.paragraph_with_translate_ability import ParagraphWithTranslateAbility
+import flet, traceback, time, threading
 
 
 class SceneButtonbarEditor (flet.Row):
@@ -16,13 +17,23 @@ class SceneButtonbarEditor (flet.Row):
             text_style=flet.TextStyle(weight=flet.FontWeight.W_300),
             tooltip="Run a quick command, or ask AI to add a thing to the canvas."
         )
+
+        self.content_of_ai_icon = flet.IconButton(
+            icon="CHAT_BUBBLE_OUTLINE_ROUNDED", 
+            icon_color="white",
+            on_click=lambda e: self.process_action(e, on_accept_suggestion),
+            width=50,
+            height=50
+        )
         ai_chat_row = flet.Row([
-            flet.Container(
-                content=flet.Icon("CHAT_BUBBLE_OUTLINE_ROUNDED", color="white"),
-                on_click=lambda e: self.process_action(e, on_accept_suggestion)
+            flet.AnimatedSwitcher(
+                content=self.content_of_ai_icon,
+                duration=250,
+                transition=flet.AnimatedSwitcherTransition.FADE
             ),
             self.ai_suggestion_field,
         ])
+        self.ai_chat_row = ai_chat_row
         self.controls.append(ai_chat_row)
 
         self.controls.append(flet.Text("", expand=True))
@@ -31,7 +42,7 @@ class SceneButtonbarEditor (flet.Row):
         # Multiple Pages Manager
         self.pages_browser_row = flet.Row([
             flet.TextButton("+ Page", tooltip="Create new page", on_click=lambda e: self.editor_class.on_create_new_page(), data="+page")
-        ], scroll=flet.ScrollMode.HIDDEN)
+        ], scroll=flet.ScrollMode.HIDDEN, width=300)
         self.controls.append(self.pages_browser_row)
 
         self.controls.append(flet.Text("    ", height=15))
@@ -88,15 +99,44 @@ class SceneButtonbarEditor (flet.Row):
         for p in self.editor_class.storyboard_content['pages']:
             self.pages_browser_row.controls.append(flet.ElevatedButton(
                 text=str(p),
-                tooltip=f"Edit '{p}' page",
+                tooltip=f"Edit '{p}' page | Long-Press to manage",
                 bgcolor="white",
                 color="blue",
                 data=str(p),
-                on_click=lambda e: self.editor_class.change_canvas_page(page_name=e.control.data)
+                on_click=lambda e: self.editor_class.change_canvas_page(page_name=e.control.data),
+                on_long_press=lambda e: self.editor_class.to_rename_a_page(page_name=e.control.data)
             ))
         
         if self.pages_browser_row.page != None:
             self.pages_browser_row.update()
+    
+
+    def new_ai_suggestion (self, text:str):
+        def sheet_of_suggestion ():
+            self.page.dialog = flet.AlertDialog(content=flet.Column(controls=[
+                    ParagraphWithTranslateAbility(text=f"{text}"),
+                ], scroll=flet.ScrollMode.ADAPTIVE, width=500), open=True)
+            self.page.update()
+        
+        def remove_suggestion_after_while ():
+            time.sleep(60)
+            self.ai_chat_row.controls[0].content = self.content_of_ai_icon
+            self.ai_chat_row.controls[0].update()
+        
+
+        self.editor_class.application_class.push_notifications(
+            icon="NEW_RELEASES_OUTLINED", 
+            icon_color="#DEB64B", 
+            title="AI have a feedback to say 👨‍💻!",
+            on_click=sheet_of_suggestion
+        )
+
+        self.ai_chat_row.controls[0].content = flet.TextButton(content=flet.Text("😃", size=25), tooltip="Click to see my feedback!",
+                                                               on_click=lambda e: sheet_of_suggestion(), width=50, height=50)
+        self.ai_chat_row.controls[0].update()
+
+        threading.Thread(target=remove_suggestion_after_while, daemon=True).start()
+        
 
 
     def update(self):

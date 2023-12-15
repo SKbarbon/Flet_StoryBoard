@@ -1,8 +1,11 @@
 from fletsb import uikit
 from fletsb import utils
-import flet, os, sys
-
+import flet, os, sys, time, threading
+from fletsb import tools
+from fletsb.uikit.banner_alert import error_banner_alert
 from fletsb.pages import Editor
+from fletsb.tools.get_sound_link import AudioSoundLinks
+from fletsb.uikit import NotificationAlert
 
 
 class Application:
@@ -64,6 +67,14 @@ class Application:
         self.main_stack.controls.append(flet.Column([
             flet.Row([self.sheet_container], alignment=flet.MainAxisAlignment.CENTER)
         ], alignment=flet.MainAxisAlignment.CENTER))
+
+        
+        # Notifications & Alerts
+        self.column_of_currently_presented_notifications = flet.Column([], 
+                                                                       alignment=flet.MainAxisAlignment.START, 
+                                                                       horizontal_alignment=flet.CrossAxisAlignment.CENTER)
+        self.main_stack.controls.append(flet.Container(padding=15, width=200, height=400, 
+                                                       content=self.column_of_currently_presented_notifications))
 
 
         # Set specific page appearance for desktop
@@ -130,14 +141,46 @@ class Application:
 
     def on_keyboard_shortcut (self, e):
         if str(e.key).lower() == "escape":
-            if self.sheet_container.visible == True: self.show_the_sheet = False
+            if self.sheet_container.visible == True: 
+                self.show_the_sheet = False
+                self.editor_scene.right_section.content = self.editor_scene.right_section_placeholder
+                self.editor_scene.right_section.update()
         
 
         # Pass event to current scene
         if self.current_presented_scene != None:
             if hasattr(self.current_presented_scene, "on_keyboard_event"):
-                self.current_presented_scene.on_keyboard_event(e)
+                threading.Thread(target=self.current_presented_scene.on_keyboard_event, args=[e], daemon=True).start()
     
+
+    def push_notifications (self, icon:str, icon_color:str, title:str, on_click=None):
+        # Push sound
+        self.page.overlay.clear()
+        self.page.overlay.append(flet.Audio(src=AudioSoundLinks().notification, autoplay=True))
+        self.page.update()
+
+        # Present the notification content
+        na = NotificationAlert(
+            icon=icon,
+            icon_color=icon_color,
+            title=title,
+            on_clicked=on_click,
+            column_of_currently_presented_notifications=self.column_of_currently_presented_notifications
+        )
+        threading.Thread(target=na.push, daemon=True).start()
+    
+
+    def push_error_banner(self, title:str, text:str):
+        self.page.overlay.clear()
+        self.page.overlay.append(flet.Audio(tools.AudioSoundLinks().error, autoplay=True))
+        self.page.update()
+        self.page.banner = error_banner_alert(
+            title=title,
+            text=text
+        )
+        self.page.banner.open = True
+        self.page.update()
+
 
     @property
     def show_the_sheet (self): return self.sheet_container.visible

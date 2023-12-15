@@ -11,7 +11,9 @@ def search_for_widget_id (storyboard_class, widget_id:int) -> widgets.Widget:
                 if c.data['id'] == widget_id:
                     return c
                 else:
-                    childs_fitcher(parent_widget=c, widget_id=widget_id)
+                    r = childs_fitcher(parent_widget=c, widget_id=widget_id)
+                    if r != None:
+                        return r
         
         if parent_widget.data['content'] != None:
             if parent_widget.content.data['id'] == widget_id:

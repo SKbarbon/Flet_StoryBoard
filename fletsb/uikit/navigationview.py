@@ -1,4 +1,4 @@
-import flet
+import flet, threading
 
 class NavigationView (flet.Column):
     def __init__ (self, title:str, on_click_close):
@@ -11,11 +11,12 @@ class NavigationView (flet.Column):
         # UI
         self.normal_navigationlink_bgcolor = "#509bff"
 
-
-        self.controls.append(flet.TextButton(
-            content=flet.Text("Close", color="white", weight="bold"),
-            on_click=on_click_close)
+        self.back_btn = flet.TextButton(
+            text="    Back    ",
+            on_click=on_click_close,
+            tooltip="Or click Enter or Esc"
         )
+        self.controls.append(self.back_btn)
 
         self.title_label = flet.Text(
             value=f"{title}",
@@ -33,16 +34,18 @@ class NavigationView (flet.Column):
 
     
 
-    def add_new_navigation (self, navigation_name:str, navigation_content:flet.Control):
+    def add_new_navigation (self, navigation_name:str, navigation_content:flet.Control, on_navigate=None):
         def on_open_navigationpage (e):
             self.open_navigation(navigation_name=navigation_name)
+            if on_navigate is not None:
+                threading.Thread(target=on_navigate, daemon=True).start()
 
-        label = flet.Text(f"{navigation_name}", color=flet.colors.WHITE)
+        label = flet.Text(f"{navigation_name}", color=flet.colors.BLACK)
         c = flet.Container(
             content=flet.Row([
                 label
             ], alignment=flet.MainAxisAlignment.CENTER),
-            bgcolor=self.normal_navigationlink_bgcolor,
+            bgcolor="white",
             border_radius=18,
             width=150,
             height=40,
@@ -61,20 +64,21 @@ class NavigationView (flet.Column):
             print(f"Error Passed: No navigation named '{navigation_name}'")
             return
         if self.last_selected != None:
-            self.last_selected.content.controls[0].color = "white"
-            self.last_selected.bgcolor = self.normal_navigationlink_bgcolor
+            self.last_selected.content.controls[0].color = "black"
+            self.last_selected.bgcolor = "white"
             self.last_selected.update()
             
         c = self.all_navigations[navigation_name]['flet_object']
         label = c.content.controls[0]
         self.last_selected = c
-        label.color = "black"
-        c.bgcolor = "white"
+        label.color = "white"
+        c.bgcolor = "blue"
 
         self.content_place.content = self.all_navigations[navigation_name]['content']
 
         if self.content_place.page != None:
             c.update()
+            self.back_btn.focus()
             self.content_place.update()
 
 

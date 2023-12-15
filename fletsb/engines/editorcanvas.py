@@ -31,6 +31,7 @@ class EditorCanvas (Canvas):
             self.last_selected_widget = cont
             if cont.page != None: cont.update()
 
+        widget_class.flet_object.disabled = True
         cont = flet.Container(
             content=widget_class.flet_object,
             on_hover=on_hover,

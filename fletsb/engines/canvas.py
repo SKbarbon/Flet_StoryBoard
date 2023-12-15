@@ -17,6 +17,10 @@ class Canvas:
             border_radius=18
         )
 
+        if not main_class.storyboard_class.development_mode:
+            self.view.expand = True
+            self.view.border_radius = 0
+
 
     def update_canvas(self):
         self.main_class.storyboard_controls.clear()
@@ -40,6 +44,18 @@ class Canvas:
         if page_settings['center_align']:
             self.main_col.horizontal_alignment = flet.CrossAxisAlignment.CENTER
             self.main_col.alignment = flet.MainAxisAlignment.CENTER
+        else:
+            self.main_col.horizontal_alignment = None
+            self.main_col.alignment = None
+        
+        self.main_col.scroll = page_settings['scroll']
+        self.main_col.auto_scroll = page_settings['auto_scroll']
+        self.view.bgcolor = page_settings['bgcolor']
+
+        # Update page title
+        if self.main_col.page != None:
+            self.main_col.page.title = self.main_class.current_page_name
+            self.main_col.page.update()
     
 
     def control_wraping (self, widget_class):

@@ -26,7 +26,7 @@ class EditWidgetsEngine:
             # if widget not found.
             self.section_view.controls.append(
                 flet.Row(
-                    [flet.Text(f"There is no supported\nwidget named '{class_name}'.", color=flet.colors.WHITE)]
+                    [flet.Text(f"There is no supported\nwidget named '{class_name}'.", color="#dcdcdc")]
                 )
             )
             return
@@ -39,7 +39,7 @@ class EditWidgetsEngine:
         )
         default_args = the_class.args
 
-        title = flet.Text(f"Edit {class_name}", size=25, weight=flet.FontWeight.BOLD, color=flet.colors.WHITE)
+        title = flet.Text(f"Edit {class_name}", size=25, weight=flet.FontWeight.BOLD, color="#dcdcdc")
         self.section_view.controls.append(title)
 
         # ---Remove the not defualt arg-----
@@ -61,7 +61,7 @@ class EditWidgetsEngine:
 
             # These statements below are for adding the fields for edit a widget.
             if isinstance(prop_type(), str):
-                tf = flet.TextField(width=160, bgcolor=flet.colors.WHITE, color=flet.colors.BLACK, label=prop_name)
+                tf = flet.TextField(width=160, bgcolor="#414141", color="#dcdcdc", label=prop_name)
                 tf.value = prop_value
                 self.section_view.controls.append(flet.Row([tf], alignment=flet.MainAxisAlignment.CENTER))
                 self.all_fields[prop_name] = tf
@@ -69,14 +69,14 @@ class EditWidgetsEngine:
                     tf.multiline = True
 
             elif type(prop_type()) == type(int()):
-                slid = flet.Slider(min=0, max=500, divisions=500, label="{value}", width=160)
+                slid = flet.Slider(min=0, max=500, divisions=500, label="{value}", width=160, active_color="#b887fc", thumb_color="#b887fc")
                 slid.value = int(prop_value)
                 self.section_view.controls.append(
                     flet.Row(
                         [
                             flet.Text(
                                 f"{prop_name}:",
-                                color=flet.colors.WHITE,
+                                color="#dcdcdc",
                                 width=150
                             )
                         ], alignment=flet.MainAxisAlignment.CENTER
@@ -91,10 +91,10 @@ class EditWidgetsEngine:
                 self.all_fields[prop_name] = slid
 
             elif type(prop_type()) == type(bool()):
-                tog = flet.Switch()
+                tog = flet.Switch(thumb_color={flet.MaterialState.SELECTED: "#b887fc"}, track_color={flet.MaterialState.SELECTED: "#4d4d4d"})
                 tog.value = prop_value
                 self.section_view.controls.append(
-                    flet.Row([flet.Text(f"{prop_name}", color=flet.colors.WHITE, size=13), tog],
+                    flet.Row([flet.Text(f"{prop_name}", color="#dcdcdc", size=13), tog],
                              alignment=flet.MainAxisAlignment.CENTER, spacing=25))
                 self.all_fields[prop_name] = tog
 
@@ -139,7 +139,7 @@ class EditWidgetsEngine:
         )
         self.section_view.controls.append(
             flet.Row(
-                [flet.Text(f"reArrange:", color=flet.colors.WHITE, width=150)],
+                [flet.Text(f"reArrange:", color="#dcdcdc", width=150)],
                 alignment=flet.MainAxisAlignment.CENTER
             )
         )

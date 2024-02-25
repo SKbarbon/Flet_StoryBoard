@@ -14,7 +14,7 @@ class CreateNewFile:
         page.window_center()
 
         # Set page prop
-        page.bgcolor = flet.colors.BLACK
+        page.bgcolor = "#333333"
 
         # Setup Content's mother.
         self.manage_class = manage_class
@@ -103,7 +103,7 @@ class CreateNewFile:
 
         main_column.controls.append(flet.Text("\n\n"))
 
-        Title1 = flet.Text("\n        Hey sir 🎩,\n        What is the name ?", color=flet.colors.WHITE, size=36, weight="bold")
+        Title1 = flet.Text("\n        Hello,\n        What is the name of your project?", color=flet.colors.WHITE, size=36, weight="bold")
         main_column.controls.append(Title1)
 
         describe = flet.Text(

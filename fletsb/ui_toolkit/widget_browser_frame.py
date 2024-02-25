@@ -6,7 +6,7 @@ def Widget_Browse_Frame(widget_name, widget_info_dict, on_click, page_name):
         on_click(widget_name, page_name)
 
     def on_hover(event):
-        event.control.bgcolor = "#474747" if event.data == "true" else "#5C5C5C"
+        event.control.bgcolor = "#b887fc" if event.data == "true" else "#4d4d4d"
         event.control.update()
 
     r = flet.Row(
@@ -22,7 +22,7 @@ def Widget_Browse_Frame(widget_name, widget_info_dict, on_click, page_name):
         content=r,
         width=170,
         height=35,
-        bgcolor="#5C5C5C",
+        bgcolor="#4d4d4d",
         on_click=action,
         expand=True,
         on_hover=on_hover,

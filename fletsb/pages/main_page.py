@@ -93,6 +93,10 @@ class mainPage:
             self.page.appbar = self.generate_app_bar()
             self.page.update()
 
+        def cancel_page_creation(e):
+            self.page.appbar = self.generate_app_bar()
+            self.page.update()
+
         def open_a_page(e):
             page_name = str(e.control.content.controls[0].value)
             if page_name in self.dict_content["pages"]:
@@ -106,13 +110,15 @@ class mainPage:
             self.page.update()
 
         def ask_for_new_page_name(e):
-            mr.scroll = False
-            tf = flet.TextField(label="Page name", on_submit=create_a_page, height=40, color="white")
-            mr.controls = [tf]
+            #mr.scroll = False
+            tf = flet.TextField(label="Page name", on_submit=create_a_page, height=40,
+                                color="white", border_color="#b887fc", cursor_color="#b887fc")
+            cb = flet.TextButton(content=flet.Text("Cancel", color=flet.colors.RED), on_click=cancel_page_creation)
+            mr.controls = [tf, cb]
             mr.update()
             tf.focus()
 
-        mr = flet.Row([], width=250, scroll=True)
+        mr = flet.Row([], width=400, scroll=True, expand=True)
         mr.controls.append(
             flet.TextButton(content=flet.Text("✨", size=18), on_click=self.edit_page_suggestion_state, width=35))
         new_page_button = flet.Container(flet.Row([flet.Text("+ Page", size=12, color="black")], alignment="center"),
@@ -127,14 +133,14 @@ class mainPage:
                 on_click=open_a_page)
             mr.controls.append(c)
             if str(p) == str(self.current_page_name):
-                c.bgcolor = "blue"
+                c.bgcolor = "#b887fc"
                 self.last_checked_page_button = c
 
         return mr
 
     def generate_app_bar(self):
         a = flet.AppBar(
-            bgcolor=self.page.bgcolor,
+            bgcolor="#3b3b3b",
             leading=flet.Row([
                 Text("    "),
                 flet.Icon(flet.icons.DASHBOARD_ROUNDED, size=18, color="white"),
@@ -213,7 +219,7 @@ class mainPage:
     def create_new_page(self, page_name):
         page_dict = {
             "settings": {
-                "bgcolor": "#181a1b",
+                "bgcolor": "#1C1C1E",
                 "suggestions_rules": "none"
             },
             "widgets": [

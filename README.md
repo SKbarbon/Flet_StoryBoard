@@ -17,24 +17,19 @@ for Upgrade:
 
 ## Little Peek
 
-<img width="1500" alt="Screenshot 2023-04-26 at 12 17 33 PM" src="https://user-images.githubusercontent.com/86029286/234530619-004e0eca-d2b3-47ad-94fe-37ef5ae0fa68.png">
+<img width="1332" alt="Showcase" src="Readme_files/showcase.png">
 
-## What's new on `Flet_StoryBoard` `1.0` 🎉
-- ReSupport custom widgets with flet.
-- Multiple pages support.
-- New Suggestions
-- New way to load the StoryBoard on your app.
-- The ability to add external `flet` controls inside the StoryBoard.
-- New Feature called `Smart suggestions`. It gets your goal then suggest things based on it.
-- Support templates. A template is a file contain pre-set props for all StoryBoard's widgets, like fonts and default text color. - soon -
-- ReBuild the architecture of the library.
+## What's new on `Flet_StoryBoard` `1.1` 🎉
+- New UI revamp.
+- Added support for dropdown widget.
+- Updated the architecture of the library.
 * Please read the docs to know more about library usage. [docs page](https://github.com/SKbarbon/Flet_StoryBoard/wiki)
 * if there is any another issues not fixed yet, please create an issue here: [issues page](https://github.com/SKbarbon/Flet_StoryBoard/issues)
 
 
 ## usage & examples 🤝
 You can use the editor just from the web!, click here to start:
-[fletsb on web](https://skbarbon.github.io/wfletsb)
+[fletsb on web](https://x-0d.github.io/wfletsb/) (*Old)
 
 There is a very simple docs here about library usage.
 [docs page](https://github.com/SKbarbon/Flet_StoryBoard/wiki)

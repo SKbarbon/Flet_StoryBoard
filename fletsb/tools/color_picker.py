@@ -16,7 +16,8 @@ class ColorPicker:
             add_it=True,
             title_name="select color",
             drop_width=200,
-            color_prev_width=50
+            color_prev_width=50,
+            expand=False
     ) -> None:
 
         if main_view is None:
@@ -27,12 +28,13 @@ class ColorPicker:
         self.on_choose_color = on_choose_color
         self.main_view = main_view
         self.selected_color = selected_color
+        self.expand = expand
 
-        v = Container()
+        v = Container(expand=expand)
         self.v = v
 
         main_dropdown = flet.Dropdown(width=drop_width, value=selected_color, label=title_name,
-                                      on_change=self.on_choose)
+                                      on_change=self.on_choose, expand=True)
         for i in self.__all_colors:
             main_dropdown.options.append(flet.dropdown.Option(i))
         self.mainDropdown = main_dropdown

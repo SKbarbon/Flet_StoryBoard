@@ -25,7 +25,7 @@ class SettingsPage:
         page.on_resize = self.on_page_resize
         page.controls.clear()
         page.appbar = None
-        page.bgcolor = "black"
+        page.bgcolor = "#333333"
         page.update()
 
         main_row = flet.Row(alignment="center")
@@ -87,7 +87,7 @@ class SettingsPage:
         page : Page = self.page
         page.on_keyboard_event = self.__last_keyboard_manager
         page.controls.clear()
-        page.bgcolor = "black"
+        page.bgcolor = "#333333"
         page.appbar = self.__lat_appbar
 
         for c in self.__last_controls:
@@ -131,13 +131,13 @@ def page_navigator_frame_button (name:str, icon, function, settings_class:Settin
             container.bgcolor = None
         container.update()
         if e.control == settings_class.current_selected_page:
-            e.control.bgcolor = "blue"
+            e.control.bgcolor = "#b887fc"
             e.control.update()
     
     def on_click (e):
         if settings_class.current_selected_page == None:
             settings_class.current_selected_page = container
-            container.bgcolor = "blue"
+            container.bgcolor = "#b887fc"
             if container.page == None:
                 settings_class.page.update()
             else:
@@ -147,7 +147,7 @@ def page_navigator_frame_button (name:str, icon, function, settings_class:Settin
             if settings_class.current_selected_page.page != None:
                 settings_class.current_selected_page.update()
             settings_class.current_selected_page = container
-            container.bgcolor = "blue"
+            container.bgcolor = "#b887fc"
             if container.page == None:
                 settings_class.page.update()
             else:
@@ -169,7 +169,7 @@ def page_navigator_frame_button (name:str, icon, function, settings_class:Settin
     r.controls.append(NAME)
 
     if as_a_click:
-        container.bgcolor = "blue"
+        container.bgcolor = "#b887fc"
         on_click(container)
 
     return flet.Row([container], alignment="center")

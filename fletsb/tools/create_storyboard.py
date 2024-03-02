@@ -15,7 +15,7 @@ def Create_StoryBoard(file_name, template="default", storyboard_suggestions=Fals
             "pages": {
                 "main": {
                     "settings": {
-                        "bgcolor": "black",
+                        "bgcolor": "#333333",
                         "suggestions_rules": f"{main_page_suggestions_rules}"
                     },
                     "widgets": [
@@ -29,4 +29,4 @@ def Create_StoryBoard(file_name, template="default", storyboard_suggestions=Fals
         file.write(json.dumps(storyboard_default_template))
         return True
     else:
-        print("External templates are nor supported yet.")
+        print("External templates are not supported yet.")

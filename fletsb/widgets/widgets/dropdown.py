@@ -1,43 +1,32 @@
 import flet
 from ...tools.color_picker import ColorPicker
 
-
-class TextField(object):
+class DropDown(object):
     def __init__(self, main_class, parent, *args, **kwargs) -> None:
         self.parent = parent
         self.main_class = main_class
-        self.self_object = flet.TextField(
-            on_focus=self.on_start_type,
-            on_change=self.on_change_text,
-            on_submit=self.on_end_type,
-            selection_color=flet.colors.BLACK,
-            cursor_color=flet.colors.BLACK
+        self.self_object = flet.Dropdown(
+            on_focus=self.on_focus,
+            on_change=self.on_change
         )
-
         # all args
         self.args = {
-            "text": {"type": str, "default_value": ""},
-            "label": {"type": str, "default_value": "text.."},
-            "hint_text": {"type": str, "default_value": "text.."},
-            "multiline": {"type": bool, "default_value": False},
-            "can_reveal_password": {"type": bool, "default_value": True},
-            "password": {"type": bool, "default_value": False},
+            "items":{"type": str, "default_value": "None"},
             "width": {"type": int, "default_value": 200},
             "height": {"type": int, "default_value": 65},
             "border_radius": {"type": int, "default_value": 12},
             "bgcolor": {"type": ColorPicker, "default_value": "#414141"},
             "color": {"type": ColorPicker, "default_value": "#dcdcdc"},
             "alignment": {"type": list, "options": ["left", "center", "right"], "default_value": "center"},
-            "on start": {"type": str, "default_value": ""},
+            "on blur": {"type": str, "default_value": ""},
             "on change": {"type": str, "default_value": ""},
-            "on end": {"type": str, "default_value": ""},
-            "point name": {"type": str, "default_value": ""}
+            "on focus": {"type": str, "default_value": ""},
         }
 
         # Template dict
         # This is where the widget data will be stored.
         self.template = {
-            "widget_class_name": "TextField",
+            "widget_class_name": "DropDown",
             "properties": {}
         }
         for p in self.args:
@@ -53,42 +42,48 @@ class TextField(object):
             for i in new_props:
                 self.template["properties"][i] = new_props[i]
 
-        tf.value = props["text"]
-        tf.label = props["label"]
-        tf.hint_text = props["hint_text"]
-        tf.multiline = props["multiline"]
-        tf.password = props["password"]
-        tf.can_reveal_password = props["can_reveal_password"]
+        def generate_item_list(string):
+            separated_list = [item.strip() for item in string.split(',')]
+            return separated_list
+
         tf.width = props["width"]
         tf.height = props["height"]
         tf.bgcolor = props["bgcolor"]
         tf.color = props["color"]
         tf.border_radius = props["border_radius"]
 
+        # clear previous options
+        tf.options.clear()
+        if props["items"] != "":
+            for item in generate_item_list(props["items"]):
+                tf.options.append(flet.dropdown.Option(item))
+        self.tf = tf
+
         if self.self_object.page is not None:
             self.self_object.update()
 
-    def on_start_type(self, event):
+
+    def on_focus(self, event):
         if self.main_class.development_mode:
             return
         else:
             props = self.template["properties"]
-            if props["on start"] == "":
+            if props["on focus"] == "":
                 return
 
-            if props["on start"] in self.main_class.storyboard_class.functions:
+            if props["on focus"] in self.main_class.storyboard_class.functions:
                 self.main_class.storyboard_class.functions[props["on start"]]()
             else:
-                fn = props["on start"]
+                fn = props["on focus"]
                 print(f"Pass error: There is not function found called {fn}")
 
-    def on_change_text(self, event):
+    def on_change(self, event):
         if self.main_class.development_mode:
             return
         else:
             props = self.template["properties"]
-            if props["point name"] != "":
-                self.main_class.storyboard_class.points[props["point name"]] = str(self.self_object.value)
+            if props["on blur"] != "":
+                self.main_class.storyboard_class.functions[props["on blur"]](self.self_object.value)
             if props["on change"] == "":
                 return
 
@@ -98,25 +93,10 @@ class TextField(object):
                 fn = props["on change"]
                 print(f"Pass error: There is not function found called {fn}")
 
-    def on_end_type(self, event):
-        if self.main_class.development_mode:
-            return
-        else:
-            props = self.template["properties"]
-            if props["point name"] != "":
-                self.main_class.storyboard_class.points[props["point name"]] = str(self.self_object.value)
-            if props["on end"] == "": return
-
-            if props["on end"] in self.main_class.storyboard_class.functions:
-                self.main_class.storyboard_class.functions[props["on end"]](self.self_object.value)
-            else:
-                fn = props["on end"]
-                print(f"Pass error: There is not function found called {fn}")
-
     def return_widget(self):
+        props = self.template["properties"]
         if self.main_class.development_mode:
             self.self_object.disabled = True
-        props = self.template["properties"]
         if props["alignment"] == "left":
             return flet.Row([flet.Text("    "), self.self_object])
         elif props["alignment"] == "center":

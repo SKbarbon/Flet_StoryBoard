@@ -42,7 +42,7 @@ class ListPopup:
 
         page: flet.Page = self.main_class.page
 
-        cont = flet.Container(bgcolor=flet.colors.BLACK, border_radius=12)
+        cont = flet.Container(bgcolor="#333333", border_radius=12)
         loading_text = flet.Text("Loading..", color=flet.colors.WHITE)
         cont.content = flet.Row([loading_text], alignment=flet.MainAxisAlignment.CENTER, height=100)
 

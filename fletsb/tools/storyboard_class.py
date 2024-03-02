@@ -9,7 +9,8 @@ class StoryBoard:
 
     def add_function(self, function_name, function):
         """
-Define function, so the storyboard's widgets can access to. Like `function name` property of the `Button` widget need to have a Defined function.
+        Define function, so the storyboard's widgets can access to.
+        Like `function name` property of the `Button` widget need to have a Defined function.
         """
         self.functions[function_name] = function
         self.points = {}
@@ -25,6 +26,11 @@ Define function, so the storyboard's widgets can access to. Like `function name`
             self.__page.update()
         else:
             self.__page.add(control)
+
+    def add_flet_overlay(self, control):
+        # Add a utility to the flet overlay.
+        self.__page.overlay.append(control)
+        self.__page.update()
 
     def get_point(self, point_name: str):
         """

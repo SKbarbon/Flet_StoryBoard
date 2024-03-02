@@ -19,9 +19,11 @@ for Upgrade:
 
 <img width="1332" alt="Showcase" src="Readme_files/showcase.png">
 
-## What's new on `Flet_StoryBoard` `1.1` 🎉
+## What's new on `Flet_StoryBoard` `1.5` 🎉
 - New UI revamp.
 - Added support for dropdown widget.
+- Added support for file picker widget.
+- Added support for flet overlays.
 - Updated the architecture of the library.
 * Please read the docs to know more about library usage. [docs page](https://github.com/SKbarbon/Flet_StoryBoard/wiki)
 * if there is any another issues not fixed yet, please create an issue here: [issues page](https://github.com/SKbarbon/Flet_StoryBoard/issues)

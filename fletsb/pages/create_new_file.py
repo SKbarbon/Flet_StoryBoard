@@ -107,7 +107,7 @@ class CreateNewFile:
         main_column.controls.append(Title1)
 
         describe = flet.Text(
-            "                  Lets choose a name of our UI.\n                  This name is the same as StoryBoad file name!.\n",
+            "                  Let's choose a name of our UI.\n                  This name is the same as StoryBoad file name!.\n",
             color=flet.colors.WHITE60, size=15)
         main_column.controls.append(describe)
 

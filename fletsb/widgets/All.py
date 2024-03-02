@@ -11,6 +11,7 @@ from .widgets.padding import Padding
 from .widgets.textfield import TextField
 from .widgets.navigator import Navigator
 from .widgets.dropdown import DropDown
+from .widgets.filepicker import FilePicker
 
 all_widgets = {
     "Title": {"icon": "TEXT_FIELDS_ROUNDED", "class": Title},
@@ -25,5 +26,6 @@ all_widgets = {
     "Column" : {"icon":"TABLE_ROWS_SHARP", "class":Column},
     "Image": {"icon": "IMAGE_OUTLINED", "class": Image},
     "Padding": {"icon": "SPACE_BAR_ROUNDED", "class": Padding},
+    "FilePicker": {"icon": "FOLDER", "class": FilePicker},
     "Navigator": {"icon": "NAVIGATE_NEXT", "class": Navigator}
 }
